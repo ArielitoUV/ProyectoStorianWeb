@@ -1,0 +1,32 @@
+
+.background-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+  }
+
+  .contenido-index {
+    text-align: center;
+    margin-top: 200px;
+    margin-left: 900px; /* Puedes ajustar este valor según tu preferencia */
+}
+
+.parrafo-index {
+    text-align: center; /* Alinea el texto al centro */
+    line-height: 1.5; /* Ajusta el espaciado entre líneas */
+    letter-spacing: 1px; /* Ajusta el espaciado entre letras */
+    margin: 20px; /* Agrega margen para separar el párrafo del título */
+}
+
+/* Cambia el color del texto de la barra de navegación a negro (#000) y ajusta el tamaño de fuente */
+.navbar .navbar-nav .nav-link {
+    color: #000 !important; /* El !important es necesario para anular cualquier estilo heredado */
+    margin-right: 25px;
+    font-size: 18px; /* Tamaño de fuente, puedes ajustarlo según tus preferencias */
+}
+
+
+
+
+ 
