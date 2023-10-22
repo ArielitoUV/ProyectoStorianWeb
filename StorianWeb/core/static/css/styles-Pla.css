@@ -1,0 +1,111 @@
+
+.background-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+  }
+
+  .contenido-index {
+    text-align: center;
+    margin-top: 200px;
+    margin-left: 900px; /* Puedes ajustar este valor según tu preferencia */
+}
+
+.parrafo-index {
+    text-align: center; /* Alinea el texto al centro */
+    line-height: 1.5; /* Ajusta el espaciado entre líneas */
+    letter-spacing: 1px; /* Ajusta el espaciado entre letras */
+    margin: 20px; /* Agrega margen para separar el párrafo del título */
+}
+
+/* Cambia el color del texto de la barra de navegación a negro (#000) y ajusta el tamaño de fuente */
+.navbar .navbar-nav .nav-link {
+    color: #000 !important; /* El !important es necesario para anular cualquier estilo heredado */
+    margin-right: 25px;
+    font-size: 18px; /* Tamaño de fuente, puedes ajustarlo según tus preferencias */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Tu CSS existente */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.account-link a {
+    color: #0e0e0e;
+    text-decoration: none;
+}
+
+.registration-container .form-group {
+    margin-bottom: 20px;
+}
+
+.registration-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #555555;
+}
+
+/* Clase para dividir en dos filas */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Clases para las dos columnas */
+.col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
