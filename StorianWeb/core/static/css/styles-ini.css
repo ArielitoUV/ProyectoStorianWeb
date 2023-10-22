@@ -1,4 +1,20 @@
+/* Estilo personalizado para hacer la barra de navegación transparente */
+.navbar {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
 
+.navbar a.navbar-brand {
+  color: #000000 !important; /* Cambia el color del texto del logotipo a blanco */
+}
+
+.navbar .navbar-nav .nav-link {
+  color: #fff !important; /* Cambia el color del texto de las opciones de navegación a blanco */
+}
+
+.navbar-toggler-icon {
+  background-color: #fff !important; /* Cambia el color del icono del botón de navegación a blanco */
+}
 background-image {
   background-size: cover;
   background-repeat: no-repeat;
@@ -53,9 +69,9 @@ body {
   .login-root {
     background: #fff;
     display: flex;
-    justify-content: column; /* Centrar horizontalmente */
+    flex-direction: column; /* Columna para centrar verticalmente */
     align-items: center; /* Centrar verticalmente */
-    justify-content: center;
+    justify-content: center; /* Centrar horizontalmente */
     min-height: 90vh;
   }
   
@@ -74,10 +90,9 @@ body {
     -ms-flex-pack: center;
     justify-content: center;
     text-align: center;
-    margin-top: -1px; /* Ajusta el valor negativo para compensar la posición del span */
-    left: 90px;
-}
-
+    margin-top: 80px; /* Mueve el elemento hacia abajo */
+  }
+  
   /*Iniciar sesion*/
   span {
     display: block;
@@ -85,8 +100,8 @@ body {
     line-height: 20px;
     color: #0d0d0e;
     position: relative;
-    top: -10px; /* Ajusta el valor según sea necesario para subir el elemento */
-    left: 50px;
+    top: -30px; /* Mueve el elemento hacia abajo */
+    left: 50px; /* Mueve el elemento hacia el lado derecho */
   }
   
   /*tamaño */
