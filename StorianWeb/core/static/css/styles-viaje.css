@@ -86,3 +86,18 @@ body {
     }
 }
 
+.timeline {
+  display: flex;
+  justify-content: space-between;
+}
+
+.timeline-item {
+  width: 23%; /* Establece el ancho de cada imagen para que haya espacio entre ellas */
+  text-align: center;
+  margin: 10px 0;
+}
+
+.timeline-item img {
+  width: 100%; /* Asegura que la imagen ocupe todo el espacio dentro del contenedor */
+  border-radius: 5px; /* Añade esquinas redondeadas a las imágenes si lo deseas */
+}
