@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
   <!-- Agrega los enlaces a los archivos de Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="/StorianWeb/core/static/css/styles-ini.css">
@@ -13,7 +13,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-      <a class="navbar-brand" href="index.html" style="font-size: 30px;">Storian Web</a>
+      <a class="navbar-brand" href="/index/" style="font-size: 30px;">Storian Web</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -72,4 +72,4 @@
     </div>
   </div>
 </body>
-</html>
+{% endblock %}
