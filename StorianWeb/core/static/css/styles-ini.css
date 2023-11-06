@@ -1,109 +1,69 @@
-/* Estilo personalizado para hacer la barra de navegación transparente */
-.navbar {
-  background-color: transparent !important;
-  box-shadow: none !important;
-}
-
-.navbar a.navbar-brand {
-  color: #000000 !important; /* Cambia el color del texto del logotipo a blanco */
-}
-
-.navbar .navbar-nav .nav-link {
-  color: #fff !important; /* Cambia el color del texto de las opciones de navegación a blanco */
-}
-
-.navbar-toggler-icon {
-  background-color: #fff !important; /* Cambia el color del icono del botón de navegación a blanco */
-}
-background-image {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  height: 100vh;
-}
-
-.contenido-index {
-  text-align: center;
-  margin-top: 200px;
-  margin-left: 900px; /* Puedes ajustar este valor según tu preferencia */
-}
-
-.parrafo-index {
-  text-align: center; /* Alinea el texto al centro */
-  line-height: 1.5; /* Ajusta el espaciado entre líneas */
-  letter-spacing: 1px; /* Ajusta el espaciado entre letras */
-  margin: 20px; /* Agrega margen para separar el párrafo del título */
-}
-
-/* Cambia el color del texto de la barra de navegación a negro (#000) y ajusta el tamaño de fuente */
-.navbar .navbar-nav .nav-link {
-  color: #000000 !important; /* El !important es necesario para anular cualquier estilo heredado */
-  margin-right: 25px;
-  font-size: 18px; /* Tamaño de fuente, puedes ajustarlo según tus preferencias */
-}
-
-
 /*fondo*/
 body {
-    min-height: 100%;
-    background-color: #fff4fb;
-  }
-  
-  h1 {
-    letter-spacing: -1px;
-  }
-  
-  a {
-    color: #080808;
-    text-decoration: unset;
-  }
-  
-  /* Ajustar el padding y centrar horizontalmente */
-  .padding-horizontal--48 {
-    position: relative;
-    left: 50%; /* Centrar horizontalmente */
-    transform: translateX(-50%); /* Ajuste para centrar */
-  }
-  
-  /*Centrar vertical y horizontalmente todo el contenido en login-root*/
-  .login-root {
-    background: #fff;
-    display: flex;
-    flex-direction: column; /* Columna para centrar verticalmente */
-    align-items: center; /* Centrar verticalmente */
-    justify-content: center; /* Centrar horizontalmente */
-    min-height: 90vh;
-  }
-  
-  .flex-flex {
-    display: flex;
-    flex-direction: column; /* Columna para centrar verticalmente */
-    align-items: center;
-  }
-  
-  .padding-bottom--24 {
-    padding-bottom: 24px;
-  }
-  
-  /*centra el Accede*/
-  .flex-justifyContent--center {
-    -ms-flex-pack: center;
-    justify-content: center;
-    text-align: center;
-    margin-top: 90px; /* Mueve el elemento hacia abajo */
-  }
-  
-  /*Iniciar sesion*/
-  span {
-    display: block;
-    font-size: 20px;
-    line-height: 20px;
-    color: #0d0d0e;
-    position: relative;
-    top: -30px; /* Mueve el elemento hacia abajo */
-    left: 40px; /* Mueve el elemento hacia el lado derecho */
-  }
-  
+  min-height: 100%;
+  background-color: #fff4fb;
+}
+
+h1 {
+  letter-spacing: -1px;
+}
+
+a {
+  color: #080808;
+  text-decoration: unset;
+}
+
+/* Ajustar el padding y centrar horizontalmente */
+.padding-horizontal--48 {
+  position: relative;
+  left: 50%; /* Centrar horizontalmente */
+  transform: translateX(-50%); /* Ajuste para centrar */
+}
+
+/*Centrar vertical y horizontalmente todo el contenido en login-root*/
+.login-root {
+  background: #fff;
+  display: flex;
+  flex-direction: column; /* Columna para centrar verticalmente */
+  align-items: center; /* Centrar verticalmente */
+  justify-content: center; /* Centrar horizontalmente */
+  min-height: 90vh;
+}
+
+.flex-flex {
+  display: flex;
+  flex-direction: column; /* Columna para centrar verticalmente */
+  align-items: center;
+}
+
+.padding-bottom--24 {
+  padding-bottom: 24px;
+}
+
+/*centra el Accede*/
+.flex-justifyContent--center {
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 20px; /* Mueve el elemento hacia abajo */
+}
+
+/*Iniciar sesion*/
+span {
+  display: block;
+  font-size: 20px;
+  line-height: 20px;
+  color: #0d0d0e;
+  position: relative;
+  top: -10px; /* Mueve el elemento hacia abajo */
+  left: 10px; /* Mueve el elemento hacia el lado derecho */
+}
+
+/* Separación entre email y contraseña */
+.text-center {
+  margin: 20px 0;
+}
+
   /*tamaño */
   .field input {
     font-size: 16px;
