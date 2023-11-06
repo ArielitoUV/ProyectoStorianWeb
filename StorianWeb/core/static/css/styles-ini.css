@@ -1,7 +1,15 @@
+/* Cambia el color del texto de la barra de navegación a negro (#000) y ajusta el tamaño de fuente */
+.navbar .navbar-nav .nav-link {
+  color: #000 !important; /* El !important es necesario para anular cualquier estilo heredado */
+  margin-right: 25px;
+  font-size: 18px; /* Tamaño de fuente, puedes ajustarlo según tus preferencias */
+}
 /*fondo*/
 body {
   min-height: 100%;
   background-color: #fff4fb;
+  background-image: url('../assets/img/Fondo2.jpg');
+    background-size: cover;
 }
 
 h1 {
@@ -28,6 +36,9 @@ a {
   align-items: center; /* Centrar verticalmente */
   justify-content: center; /* Centrar horizontalmente */
   min-height: 90vh;
+  width: 0%;
+  max-width: 600px; /* Ancho máximo para el cuadro */
+  margin: 0 auto; /* Centrar horizontalmente */
 }
 
 .flex-flex {
