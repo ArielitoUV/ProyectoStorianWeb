@@ -2,20 +2,6 @@ body {
     background-image: url('../assets/img/index.png');
     background-size: cover;
 }
-
-  .contenido-index {
-    text-align: center;
-    margin-top: 200px;
-    margin-left: 900px; 
-}
-
-.parrafo-index {
-    text-align: center;
-    line-height: 1.5; 
-    letter-spacing: 1px; 
-    margin: 20px; 
-}
-
 /* Cambia el color del texto de la barra de navegación a negro (#000) y ajusta el tamaño de fuente */
 .navbar .navbar-nav .nav-link {
     color: #000 !important; /* El !important es necesario para anular cualquier estilo heredado */
