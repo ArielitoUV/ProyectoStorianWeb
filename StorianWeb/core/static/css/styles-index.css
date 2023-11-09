@@ -10,14 +10,13 @@ body {
 }
 
 .btn-custom {
-    background-color: #FF5733; /* Cambia #FF5733 al color que desees */
-    color: #FFFFFF; /* Cambia #FFFFFF al color del texto deseado */
-    border-color: #FF5733; /* Cambia #FF5733 al color del borde deseado */
+    background-color: #d491c9; /* Cambia #FF5733 al color que desees */
+    color: #000000; /* Cambia #FFFFFF al color del texto deseado */
 }
 
 .btn-custom:hover {
-    background-color: #FF8140; /* Cambia #FF8140 al color de fondo en el hover deseado */
-    border-color: #FF8140; /* Cambia #FF8140 al color del borde en el hover deseado */
+    background-color: rgb(188, 11, 91); /* Cambia #FF8140 al color de fondo en el hover deseado */
+    border-color: #a640ff; /* Cambia #FF8140 al color del borde en el hover deseado */
 }
 
 
