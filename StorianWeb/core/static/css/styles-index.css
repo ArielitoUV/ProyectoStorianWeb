@@ -1,6 +1,6 @@
 body {
     background-image: url('../assets/img/index.png');
-    background-size: cover;
+    background-size:cover;
 }
 /* Cambia el color del texto de la barra de navegación a negro (#000) y ajusta el tamaño de fuente */
 .navbar .navbar-nav .nav-link {
