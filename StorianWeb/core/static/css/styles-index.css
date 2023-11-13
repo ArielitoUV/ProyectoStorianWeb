@@ -2,14 +2,6 @@ body {
     background-image: url('../assets/img/index.png');
     background-size:cover;
 }
-
-.navbar .navbar-nav .nav-link {
-    color: #000 !important;
-    margin-right: 25px;
-    font-size: 18px;
-}
-
-
 .btn-custom {
     background-color: #d491c9; /* Cambia #FF5733 al color que desees */
     color: #000000; /* Cambia #FFFFFF al color del texto deseado */
@@ -19,11 +11,3 @@ body {
     background-color: rgb(188, 11, 91); /* Cambia #FF8140 al color de fondo en el hover deseado */
     border-color: #a640ff; /* Cambia #FF8140 al color del borde en el hover deseado */
 }
-
-
-
-
-
-
-
- 
