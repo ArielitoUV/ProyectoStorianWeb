@@ -2,12 +2,13 @@ body {
     background-image: url('../assets/img/index.png');
     background-size:cover;
 }
-/* Cambia el color del texto de la barra de navegación a negro (#000) y ajusta el tamaño de fuente */
+
 .navbar .navbar-nav .nav-link {
-    color: #000 !important; /* El !important es necesario para anular cualquier estilo heredado */
+    color: #000 !important;
     margin-right: 25px;
-    font-size: 18px; /* Tamaño de fuente, puedes ajustarlo según tus preferencias */
+    font-size: 18px;
 }
+
 
 .btn-custom {
     background-color: #d491c9; /* Cambia #FF5733 al color que desees */
@@ -18,6 +19,8 @@ body {
     background-color: rgb(188, 11, 91); /* Cambia #FF8140 al color de fondo en el hover deseado */
     border-color: #a640ff; /* Cambia #FF8140 al color del borde en el hover deseado */
 }
+
+
 
 
 
