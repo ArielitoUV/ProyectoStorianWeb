@@ -40,6 +40,16 @@ a {
   max-width: 600px; /* Ancho máximo para el cuadro */
   margin: 0 auto; /* Centrar horizontalmente */
 }
+.form-group {
+  text-align: center;
+  left: 10px;
+}
+
+.form-group input {
+  display: block;
+  margin:  10px;
+  
+}
 
 .flex-flex {
   display: flex;
@@ -56,7 +66,7 @@ a {
   -ms-flex-pack: center;
   justify-content: center;
   text-align: center;
-  margin-top: 20px; /* Mueve el elemento hacia abajo */
+  margin-top: 10px; /* Mueve el elemento hacia abajo */
 }
 
 /*Iniciar sesion*/
@@ -66,13 +76,13 @@ span {
   line-height: 20px;
   color: #0d0d0e;
   position: relative;
-  top: -10px; /* Mueve el elemento hacia abajo */
+  top: -40px; /* Mueve el elemento hacia abajo */
   left: 10px; /* Mueve el elemento hacia el lado derecho */
 }
 
 /* Separación entre email y contraseña */
 .text-center {
-  margin: 20px 0;
+  margin: 40px 0px;
 }
 
   /*tamaño */
