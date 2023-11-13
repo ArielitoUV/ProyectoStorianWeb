@@ -4,3 +4,9 @@
 .contenido-reseña{
     background-color: #fff8f1;
 }
+body {
+    min-height: 100%;
+    background-color: #fff4fb;
+    background-image: url('../assets/img/Fondo4.png');
+      background-size: cover;
+  }
