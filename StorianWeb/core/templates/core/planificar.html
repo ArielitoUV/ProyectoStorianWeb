@@ -1,8 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <link rel="stylesheet" href="/StorianWeb/core/static/css/styles-Pla.css">
-
   <style>
     /* Estilos personalizados para el botón */
     .custom-button {
@@ -14,10 +9,13 @@
       border-radius: 5px;
     }
   </style>
+  
 </head>
 {% extends 'core/base.html' %}
 {% load static %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/styles-pla.css' %}">
+
     <h2 class="text-center mb-4">Planifica Tu Visita o Evento</h2>
     <section class="page-section about-heading">
     <div class="row text-center">
