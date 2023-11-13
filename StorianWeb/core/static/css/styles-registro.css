@@ -1,9 +1,4 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
+
 
 .header {
     background-color: #333;
@@ -84,16 +79,6 @@ body {
 }
 
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f9f9f9;
-    font-family: Arial, sans-serif;
-}
-
 .login-container {
     background-color: #ffffff;
     padding: 40px;
@@ -145,6 +130,11 @@ input[type="password"] {
     background-color: #0056b3;
 }
 
-
+body {
+    min-height: 100%;
+    background-color: #fff4fb;
+    background-image: url('../assets/img/Fondo8.png');
+      background-size: cover;
+  }
 
 
