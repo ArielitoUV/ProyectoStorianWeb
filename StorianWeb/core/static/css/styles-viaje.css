@@ -71,3 +71,10 @@ body {
   width: 100%; /* Asegura que la imagen ocupe todo el espacio dentro del contenedor */
   border-radius: 5px; /* Añade esquinas redondeadas a las imágenes si lo deseas */
 }
+
+body {
+    min-height: 100%;
+    background-color: #fff4fb;
+    background-image: url('../assets/img/Fondo7.png');
+      background-size: cover;
+  }
