@@ -41,6 +41,7 @@
                             // Almacena en localStorage el enlace seleccionado y oculta su nombre
                             var selectedLinkId = this.getAttribute('href');
                             localStorage.setItem('selectedLinkId', selectedLinkId);
+                            hideLinkName(selectedLinkId);
                         });
                     });
                 });
@@ -57,10 +58,11 @@
                 function hideLinkName(selectedLinkId) {
                     var selectedLink = document.querySelector('.navbar-nav .nav-link[href="' + selectedLinkId + '"]');
                     if (selectedLink) {
-                        selectedLink.innerHTML = '';
+                        selectedLink.style.display = 'none'; // Oculta completamente el enlace
                     }
                 }
             </script>
+            
             
 
             
