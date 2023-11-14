@@ -3,15 +3,15 @@
 {% block content %}
 
 <link rel="stylesheet" href="{% static 'css/styles-busqueda.css' %}">
+
     <div class="search-container">
         <h1>Busqueda de Lugares Historicos</h1>
         <div class="search-bar">
             <input type="text" id="search-input" placeholder="Buscar lugares..."> 
         </div>
-        <button id="search-button">Acceder a Mapa</button>
-        <div class="search-results">
-            <!-- Aquí se mostrarán los resultados de la búsqueda -->
-        </div>
+        <a href="/mapa/" style="margin-left: 875px; margin-top: 20px;">
+            <button class="btn btn-custom btn-lg">Acceder a Mapa</button>
+        </a>
     </div>
     {% endblock %}
 </body>
