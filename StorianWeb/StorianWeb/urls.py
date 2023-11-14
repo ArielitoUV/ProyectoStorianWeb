@@ -30,6 +30,7 @@ urlpatterns = [
     path('informacion/',views.informacion,name="informacion"),
     path('usuarios/',views.usuarios,name="usuarios"),
     path('mapa/',views.mapa,name="mapa"),
+    path('mapa/',views.contacto,name="contacto"),
     path('admin/', admin.site.urls),
 ]
 
