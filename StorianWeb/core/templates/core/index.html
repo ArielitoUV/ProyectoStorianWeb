@@ -1,8 +1,19 @@
 {% extends 'core/baseindex.html' %}
 {% load static %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/styles-index.css' %}">
+
+<script>
+    button.addEventListener("mousemove", (e) =>{
+        const rect = button.getBoundingClientRect();
+        const x=e.clientX - rect.left;
+        const y=e.clientY - rect.top;
+        button.style.setProperty("--mouseX", `${x}px`);
+        button.style.setProperty("--mouseY", `${y}px`);
+
+    });
+</script>
     <!-- Contenido actual de tu página -->
-    <link rel="stylesheet" href="{% static 'css/styles-index.css' %}">
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-6 text-right">
