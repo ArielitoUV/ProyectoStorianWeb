@@ -24,19 +24,40 @@
             height: 89vh;
         }
         .navbar-nav .nav-item .nav-link {
-    color: #333; /* Color del texto */
-    margin-right: 25px;
-    font-size: 18px; 
-    padding: 10px 15px; /* Espaciado interno */
-    border-radius: 5px; /* Bordes redondeados */
-    transition: background-color 0.3s; /* Transición suave del color de fondo */
-}
+            color: #333;
+            margin-right: 25px;
+            font-size: 18px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
 
-    /* Estilo al pasar el ratón sobre los enlaces del navbar */
-    .navbar-nav .nav-item .nav-link:hover {
-    background-color: #adf9c879; /* Cambia el color de fondo al pasar el ratón */
-    color: #555555; /* Cambia el color del texto al pasar el ratón */
-}
+        .navbar-nav .nav-item .nav-link:hover {
+            background-color: #adf9c879;
+            color: #555555;
+        }
+
+        .info-panel, .nearby-places-panel {
+            text-align: center;
+            background-color: #f1c2c2;
+            padding: 20px;
+            border-radius: 10px;
+            margin-left: 30px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            height: 40vh;
+            overflow-y: auto;
+        }
+
+        #nearby-places {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #nearby-places li {
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -45,7 +66,7 @@
         <a class="navbar-brand" href="/">
             <img src="{% static 'assets/img/navbarlogo.png' %}" alt="Logo" style="width: 210px; height: 50px;margin-left: 20px;">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-		expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -73,38 +94,101 @@
     </div>
 </nav>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6">
-                <!-- Aquí va el contenido de la mitad izquierda de la pantalla -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="info-panel">
+                <h3>Información del Lugar</h3>
+                <p id="place-info">Haz clic en un marcador para ver la información.</p>
             </div>
-            <div class="col-md-6">
-                <div id="map"></div>
-                <script>
-                    var map = L.map('map').setView([-36.8276, -73.0502], 14); // Coordenadas de Concepción, Chile
-                    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        maxZoom: 19,
-                        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                    }).addTo(map);
-                    var marker = L.marker([-36.83259330174211, -73.04709392513155]).addTo(map);
-                    marker.bindPopup("Parque Ecuador").openPopup();
-                    var marker = L.marker([-36.82706325415922, -73.05020844603325]).addTo(map);
-                    marker.bindPopup("Plaza Independencia").openPopup();
-                    var marker = L.marker([-36.815509410609806, -73.0313667595257]).addTo(map);
-                    marker.bindPopup("Plaza Acevedo").openPopup();
-                    var marker = L.marker([-36.8333416414249, -73.04769222858886]).addTo(map);
-                    marker.bindPopup("Cerro Caracol").openPopup();
-                    var marker = L.marker([-36.87621624289867, -72.9931901153422]).addTo(map);
-                    marker.bindPopup("Reserva Nacional Nonguén").openPopup();
-                    var marker = L.marker([-36.815199153095485, -73.0303170460339]).addTo(map);
-                    marker.bindPopup("Museo de historia Natural").openPopup();
-                    var marker = L.marker([-36.83881805699544, -73.00863511705727]).addTo(map);
-                    marker.bindPopup("Parque Zoológico Concepción").openPopup();
-                    var marker = L.marker([-36.827401791254395, -73.05105216137751]).addTo(map);
-                    marker.bindPopup("Catedral Metropolitana de la Santísima Concepción").openPopup();
-                </script>
+            <div class="nearby-places-panel">
+                <h3>Lugares Cercanos</h3>
+                <ul id="nearby-places">
+                    <!-- Lista de lugares cercanos -->
+                </ul>
             </div>
         </div>
+        <div class="col-md-6">
+            <div id="map" style="height: 89vh;"></div>
+            <script>
+                var map = L.map('map').setView([-36.8276, -73.0502], 11);
+
+                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                }).addTo(map);
+                var placesData = {
+                    "Parque Ecuador": { info: "Ubicada en Víctor Lamas 567, Concepción, Bío Bío. El Parque Ecuador es un área verde urbana con juegos, canchas deportivas, parque de patinetas y equipo para hacer ejercicio."},
+                    "Plaza Independencia": { info: "Información detallada de la Plaza Independencia." },
+                    "Monitor Huascar": { info: "Información detallada del Monitor Huascar." },
+                    "Plaza Acevedo": { info: "Información detallada de la Plaza Acevedo." },
+                    "Cerro Caracol": { info: "Información detallada del Cerro Caracol." },
+                    "Universidad de Concepción": { info: "Información detallada de la Universidad de Concepción." }
+                    // Agrega más lugares según tus necesidades
+                };
+
+                // Ejemplo de marcadores con información
+                var places = [
+                    { name: "Parque Ecuador", coordinates: [-36.83259330174211, -73.04709392513155] },
+                    { name: "Plaza Independencia", coordinates: [-36.82706325415922, -73.05020844603325] },
+                    { name: "Monitor Huascar", coordinates: [-36.70530923121948, -73.1115367829423] },
+                    { name: "Plaza Acevedo", coordinates: [-36.815652494019886, -73.03143008593402] },
+                    { name: "Cerro Caracol", coordinates: [-36.83413954442819, -73.04777894052368] },
+                    { name: "Universidad de Concepción", coordinates: [-36.83026674603689, -73.0373013271406] },
+                    // Agrega más lugares según tus necesidades
+                ];
+
+                places.forEach(function(place) {
+                    var marker = L.marker(place.coordinates).addTo(map);
+                    marker.bindPopup(place.name).on('click', function() {
+                        if (selectedMarker) {
+                            selectedMarker.closePopup();
+                        }
+                        selectedMarker = marker;
+
+                        // Actualiza la información del lugar al hacer clic en el marcador
+                        var placeData = placesData[place.name];
+                        document.getElementById('place-info').innerHTML = '<h3>'+ place.name + '</h3>' + placeData.info;
+
+                        // Calcula lugares cercanos
+                        var nearbyPlaces = getNearbyPlaces(place.coordinates);
+                        
+                        // Muestra lugares cercanos en el panel
+                        updateNearbyPlacesList(nearbyPlaces);
+                    });
+                });
+
+                // Función para obtener lugares cercanos basados en coordenadas
+                function getNearbyPlaces(coordinates) {
+                    // Puedes implementar lógica para obtener lugares cercanos aquí.
+                    // En este ejemplo, simplemente se devuelven lugares ficticios, excluyendo el lugar seleccionado.
+                    return [
+                        { name: "Parque Ecuador", coordinates: [-36.83259330174211, -73.04709392513155] },
+                        { name: "Plaza Independencia", coordinates: [-36.82706325415922, -73.05020844603325] },
+                        { name: "Monitor Huascar", coordinates: [-36.70530923121948, -73.1115367829423] },
+                        { name: "Plaza Acevedo", coordinates: [-36.815652494019886, -73.03143008593402] },
+                        { name: "Cerro Caracol", coordinates: [-36.83413954442819, -73.04777894052368] },
+                        { name: "Universidad de Concepción", coordinates: [-36.83026674603689, -73.0373013271406] }
+                    ];
+                }
+
+                // Función para actualizar la lista de lugares cercanos en el panel
+                function updateNearbyPlacesList(places) {
+                    document.getElementById('nearby-places').innerHTML = '';
+                    places.forEach(function(nearbyPlace) {
+                        var listItem = document.createElement('li');
+                        listItem.innerText = nearbyPlace.name;
+                        listItem.onclick = function() {
+                            // Muestra información detallada del lugar cercano seleccionado
+                            var placeData = placesData[nearbyPlace.name];
+                            document.getElementById('place-info').innerHTML = '<h3>'+ nearbyPlace.name + '</h3>' + placeData.info;
+                        };
+                        document.getElementById('nearby-places').appendChild(listItem);
+                    });
+                }
+            </script>
+        </div>
     </div>
+</div>
 </body>
 </html>
