@@ -40,11 +40,12 @@
         .info-panel, .nearby-places-panel {
             text-align: center;
             background-color: #f1c2c2;
-            padding: 20px;
-            border-radius: 10px;
+            padding: 30px; /* Aumentamos el padding */
+            border-radius: 20px; /* Redondeamos las esquinas */
+            border: 5px solid #f09696; /* Agregamos un borde alrededor del cuadrado */
             margin-left: 30px;
             margin-top: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 0 0 5px #bb3d3d; /* Agregamos un borde afuera */
             height: 40vh;
             overflow-y: auto;
         }
@@ -117,8 +118,11 @@
                     maxZoom: 19,
                     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 }).addTo(map);
+
+                var selectedMarker;  // Declarar selectedMarker fuera del bucle
+
                 var placesData = {
-                    "Parque Ecuador": { info: "Ubicada en Víctor Lamas 567, Concepción, Bío Bío. El Parque Ecuador es un área verde urbana con juegos, canchas deportivas, parque de patinetas y equipo para hacer ejercicio."},
+                    "Parque Ecuador": { info: "Ubicada en Víctor Lamas 567, Concepción, Bío Bío. El Parque Ecuador es un área verde urbana con juegos, canchas deportivas, parque de patinetas y equipo para hacer ejercicio." },
                     "Plaza Independencia": { info: "Información detallada de la Plaza Independencia." },
                     "Monitor Huascar": { info: "Información detallada del Monitor Huascar." },
                     "Plaza Acevedo": { info: "Información detallada de la Plaza Acevedo." },
@@ -138,9 +142,9 @@
                     // Agrega más lugares según tus necesidades
                 ];
 
-                places.forEach(function(place) {
+                places.forEach(function (place) {
                     var marker = L.marker(place.coordinates).addTo(map);
-                    marker.bindPopup(place.name).on('click', function() {
+                    marker.bindPopup(place.name).on('click', function () {
                         if (selectedMarker) {
                             selectedMarker.closePopup();
                         }
@@ -148,11 +152,11 @@
 
                         // Actualiza la información del lugar al hacer clic en el marcador
                         var placeData = placesData[place.name];
-                        document.getElementById('place-info').innerHTML = '<h3>'+ place.name + '</h3>' + placeData.info;
+                        document.getElementById('place-info').innerHTML = '<h3>' + place.name + '</h3>' + placeData.info;
 
                         // Calcula lugares cercanos
                         var nearbyPlaces = getNearbyPlaces(place.coordinates);
-                        
+
                         // Muestra lugares cercanos en el panel
                         updateNearbyPlacesList(nearbyPlaces);
                     });
@@ -175,13 +179,13 @@
                 // Función para actualizar la lista de lugares cercanos en el panel
                 function updateNearbyPlacesList(places) {
                     document.getElementById('nearby-places').innerHTML = '';
-                    places.forEach(function(nearbyPlace) {
+                    places.forEach(function (nearbyPlace) {
                         var listItem = document.createElement('li');
                         listItem.innerText = nearbyPlace.name;
-                        listItem.onclick = function() {
+                        listItem.onclick = function () {
                             // Muestra información detallada del lugar cercano seleccionado
                             var placeData = placesData[nearbyPlace.name];
-                            document.getElementById('place-info').innerHTML = '<h3>'+ nearbyPlace.name + '</h3>' + placeData.info;
+                            document.getElementById('place-info').innerHTML = '<h3>' + nearbyPlace.name + '</h3>' + placeData.info;
                         };
                         document.getElementById('nearby-places').appendChild(listItem);
                     });
