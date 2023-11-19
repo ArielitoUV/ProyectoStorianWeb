@@ -27,7 +27,6 @@ urlpatterns = [
     path('reseñas/',views.reseñas,name="reseñas"),
     path('planificar/',views.planificar,name="planificar"),
     path('formulariovisita/',views.formulariovisita,name="formulariovisita"),
-    path('informacion/',views.informacion,name="informacion"),
     path('mapa/',views.mapa,name="mapa"),
     path('mapa/',views.contacto,name="contacto"),
     path('admin/', admin.site.urls),

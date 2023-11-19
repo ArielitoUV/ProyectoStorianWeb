@@ -24,9 +24,6 @@ def planificar(request):
 def formulariovisita(request):
     return render(request, "core/formulariovisita.html")
 
-def informacion(request):
-    return render(request, "core/informacion.html")
-
 def mapa(request):
     return render(request, "core/mapa.html")
 
