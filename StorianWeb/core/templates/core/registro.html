@@ -22,7 +22,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="sexo">Sexo</label>
-                    <select class="form-control" id="sexo" name="sexo" required>
+                    <select class="form-control" id="sexo" name="sexo" required style="padding: 6px;">
                         <option value="Masculino">Masculino</option>
                         <option value="Femenino">Femenino</option>
                     </select>
@@ -32,9 +32,20 @@
                     <input type="email" class="form-control" id="email" name="email" required>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="avatar">Avatar</label>
-                    <input type="url" class="form-control" id="avatar" name="avatar" required>
+                    <label for="avatar">Avatar (Elige un personaje):</label>
+                    <select class="form-control" id="avatar" name="avatar" onchange="mostrarImagen(this)" required style="padding: 6px;">
+                        <option value="" disabled selected>Selecciona un personaje</option>
+                        <option value="{% static 'assets/img/Ohiggins.jpg' %}">Personaje 1 (Bernardo O'Higgins)</option>
+                        <option value="{% static 'assets/img/arturo.jpg' %}">Personaje 2 (Arturo Prat)</option>
+                        <option value="{% static 'assets/img/GabrielaMistral.jpg' %}">Personaje 3 (Gabriela Mistral)</option>
+                        <option value="{% static 'assets/img/VioletaParra.jpg' %}">Personaje 4 (Violeta Parra)</option>
+                        <option value="{% static 'assets/img/SalvadorReyes.jpg' %}">Personaje 5 (SalvadorReyes)</option>
+                    </select>
                 </div>
+                <div class="form-group col-md-6">
+                    <label>Imagen del Personaje:</label>
+                    <div id="imagenPersonaje"></div>
+                </div>                                               
                 <div class="form-group col-md-6">
                     <label for="seudonimo">Seudónimo o Alias</label>
                     <input type="text" class="form-control" id="seudonimo" name="seudonimo">
@@ -48,4 +59,13 @@
         </form>
     </div>
 </div>
+<script>
+    function mostrarImagen(select) {
+        // Obtiene la URL seleccionada
+        var selectedOption = select.options[select.selectedIndex].value;
+    
+        // Actualiza la imagen del personaje
+        document.getElementById("imagenPersonaje").innerHTML = '<img src="' + selectedOption + '" alt="Personaje">';
+    }
+    </script>
 {% endblock %}
