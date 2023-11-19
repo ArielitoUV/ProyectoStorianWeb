@@ -27,8 +27,6 @@ def formulariovisita(request):
 def informacion(request):
     return render(request, "core/informacion.html")
 
-def usuarios(request):
-    return render(request, "core/usuarios.html")
 def mapa(request):
     return render(request, "core/mapa.html")
 
