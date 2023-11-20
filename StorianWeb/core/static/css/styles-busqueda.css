@@ -1,6 +1,6 @@
 .search-container {
     text-align: center;
-    padding: 50px;
+    padding: 85px;
     background-color: #f9f9f942;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -68,5 +68,7 @@ h1 {
 }
 
 body {
-    background-color: #cfb398;
+    background: #A770EF;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #FDB99B, #CF8BF3, #A770EF);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #FDB99B, #CF8BF3, #A770EF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
 }

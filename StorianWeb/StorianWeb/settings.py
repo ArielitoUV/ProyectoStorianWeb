@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'app_prueba',
 ]
 
 MIDDLEWARE = [
@@ -81,6 +82,18 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+# DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'NAME': 'StorianDB',
+#             'USER': 'arielito',
+#             'PASSWORD': 'aauv1999',
+#             'HOST': 'localhost',
+#             'PORT': '3306',
+#         }
+#     }
 
 
 # Password validation

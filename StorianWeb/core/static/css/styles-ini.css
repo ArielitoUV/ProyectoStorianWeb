@@ -7,9 +7,9 @@
 /*fondo*/
 body {
   min-height: 100%;
-  background-color: #fff4fb;
-  background-image: url('../assets/img/Fondo3.png');
-    background-size: cover;
+  background: #FBD3E9;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #FBD3E9, #BB377D);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #FBD3E9, #BB377D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
 }
 
 h1 {
@@ -124,7 +124,7 @@ span {
   max-width: 400px; /* Ancho máximo del contenedor */
   margin: 0 auto; /* Centrar horizontalmente el contenedor */
   border-radius: 10px;
-  padding: 20px; /* Añadir un espacio interno al contenedor */
-  background-color: #ffffff; /* Color de fondo del contenedor, puedes cambiarlo según tus preferencias */
+  padding: 44px; /* Añadir un espacio interno al contenedor */
+  background-color: #f9f9f9c0; /* Color de fondo del contenedor, puedes cambiarlo según tus preferencias */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra para el contenedor, ajusta según tus preferencias */
 }

@@ -21,16 +21,11 @@ def reseñas(request):
 def planificar(request):
     return render(request, "core/planificar.html")
 
-def formulariovisita(request):
-    return render(request, "core/formulariovisita.html")
-
-def informacion(request):
-    return render(request, "core/informacion.html")
-
-def usuarios(request):
-    return render(request, "core/usuarios.html")
 def mapa(request):
     return render(request, "core/mapa.html")
 
 def contacto(request):
     return render(request, "core/contacto.html")
+
+def micuenta(request):
+    return render(request, "core/micuenta.html")

@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/styles-registro.css' %}">
+<div class="row">
+    <div class="col-md-6 offset-md-3 registration-container">
+        <h1>Mi Cuenta</h1>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" value="{% if user.is_authenticated %}{{ user.first_name }}{% else %}John{% endif %}" readonly>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="apellido">Apellido</label>
+                <input type="text" class="form-control" id="apellido" name="apellido" value="{% if user.is_authenticated %}{{ user.last_name }}{% else %}Doe{% endif %}" readonly>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" value="{% if user.is_authenticated %}{{ user.profile.fecha_nacimiento }}{% else %}1990-01-01{% endif %}" readonly>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="sexo">Sexo</label>
+                <input type="text" class="form-control" id="sexo" name="sexo" value="{% if user.is_authenticated %}{{ user.profile.sexo }}{% else %}Masculino{% endif %}" readonly>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="{% if user.is_authenticated %}{{ user.email }}{% else %}john.doe@example.com{% endif %}" readonly>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="avatar">Avatar</label>
+                <div><img src="{% if user.is_authenticated %}{{ user.profile.avatar.url }}{% else %}{% static 'assets/img/GabrielaMistral.jpg' %}{% endif %}" alt="Avatar" style="max-width: 50%;"></div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="seudonimo">Seudónimo o Alias</label>
+                <input type="text" class="form-control" id="seudonimo" name="seudonimo" value="{% if user.is_authenticated %}{{ user.profile.seudonimo }}{% else %}johndoe123{% endif %}" readonly>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="contrasena">Contraseña</label>
+                <input type="password" class="form-control" id="contrasena" name="contrasena" value="********" readonly>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

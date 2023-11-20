@@ -4,15 +4,29 @@
 
 <link rel="stylesheet" href="{% static 'css/styles-busqueda.css' %}">
 
-    <div class="search-container">
-        <h1>Busqueda de Lugares Historicos</h1>
-        <div class="search-bar">
-            <input type="text" id="search-input" placeholder="Buscar lugares..."> 
-        </div>
-        <a href="/mapa/" style="margin-left: 875px; margin-top: 20px;">
-            <button class="btn btn-custom btn-lg">Acceder a Mapa</button>
-        </a>
+<div class="search-container">
+    <h1>Busqueda de Lugares Historicos</h1>
+    <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Buscar lugares...">
     </div>
+    <button class="btn btn-custom btn-lg" onclick="buscarLugar()">Buscar</button>
+    <button class="btn btn-custom btn-lg" onclick="accederAMapa()">Acceder a Mapa</button>
+</div>
+
+<script>
+    function buscarLugar() {
+        // Obtiene el valor ingresado en el campo de búsqueda
+        var lugar = document.getElementById('search-input').value;
+
+        // Redirige a la página del mapa con el lugar como parámetro
+        window.location.href = "/mapa/?lugar=" + encodeURIComponent(lugar);
+    }
+
+    function accederAMapa() {
+        // Redirige a la página del mapa sin ningún parámetro
+        window.location.href = "/mapa/";
+    }
+</script>
     {% endblock %}
 </body>
 </html>

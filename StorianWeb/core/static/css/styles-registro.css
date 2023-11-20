@@ -25,7 +25,7 @@
 }
 
 .registration-container {
-    background-color: #f9f9f9;
+    background-color: #f9f9f9c0;
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
@@ -39,7 +39,7 @@
 }
 
 .registration-container .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .registration-container label {
@@ -131,10 +131,13 @@ input[type="password"] {
 }
 
 body {
-    min-height: 100%;
-    background-color: #fff4fb;
-    background-image: url('../assets/img/Fondo8.png');
-      background-size: cover;
+    background: #FBD3E9;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #FBD3E9, #BB377D);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #FBD3E9, #BB377D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
   }
 
-
+#imagenPersonaje img {
+    max-width: 60%;
+    border-radius: 5px;  /* Ajusta según sea necesario */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);  /* Efecto de sombra */
+}
