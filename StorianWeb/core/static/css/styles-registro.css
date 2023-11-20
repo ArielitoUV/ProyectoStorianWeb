@@ -131,9 +131,10 @@ input[type="password"] {
 }
 
 body {
+    min-height: 100vh;
     background: #FBD3E9;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to bottom, #FBD3E9, #BB377D);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to bottom, #FBD3E9, #BB377D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+    background: -webkit-linear-gradient(to bottom, #FBD3E9, #BB377D);
+    background: linear-gradient(to bottom, #FBD3E9, #BB377D); 
   }
 
 #imagenPersonaje img {
