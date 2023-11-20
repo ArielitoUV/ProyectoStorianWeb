@@ -28,7 +28,7 @@ urlpatterns = [
     path('planificar/',views.planificar,name="planificar"),
     path('mapa/',views.mapa,name="mapa"),
     path('contacto/',views.contacto,name="contacto"),
-    path('gestionperfil/',views.gestionperfil,name="gestionperfil"),
+    path('micuenta/',views.micuenta,name="micuenta"),
     path('admin/', admin.site.urls),
 ]
 
