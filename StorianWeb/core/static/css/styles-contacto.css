@@ -14,18 +14,6 @@ body {
 }
 
 
-.contact_form{  
-  width: 460px; 
-  height: auto;
-  margin: 80px auto;
-  border-radius: 10px;  
-  padding-top: 30px;
-  padding-bottom: 20px;  
-  background-color: #fbfbfb; 
-  padding-left: 30px; 
-}
-
-
 input{
   background-color: #fbfbfb; 
   width: 408px; 
