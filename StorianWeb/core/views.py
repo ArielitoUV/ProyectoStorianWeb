@@ -21,9 +21,6 @@ def reseñas(request):
 def planificar(request):
     return render(request, "core/planificar.html")
 
-def formulariovisita(request):
-    return render(request, "core/formulariovisita.html")
-
 def mapa(request):
     return render(request, "core/mapa.html")
 

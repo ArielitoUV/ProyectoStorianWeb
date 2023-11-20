@@ -26,7 +26,6 @@ urlpatterns = [
     path('viajetiempo/',views.viajetiempo,name="viajetiempo"),
     path('reseñas/',views.reseñas,name="reseñas"),
     path('planificar/',views.planificar,name="planificar"),
-    path('formulariovisita/',views.formulariovisita,name="formulariovisita"),
     path('mapa/',views.mapa,name="mapa"),
     path('contacto/',views.contacto,name="contacto"),
     path('gestionperfil/',views.gestionperfil,name="gestionperfil"),
