@@ -29,6 +29,7 @@ urlpatterns = [
     path('formulariovisita/',views.formulariovisita,name="formulariovisita"),
     path('mapa/',views.mapa,name="mapa"),
     path('contacto/',views.contacto,name="contacto"),
+    path('gestionperfil/',views.gestionperfil,name="gestionperfil"),
     path('admin/', admin.site.urls),
 ]
 

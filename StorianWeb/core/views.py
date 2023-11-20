@@ -29,3 +29,6 @@ def mapa(request):
 
 def contacto(request):
     return render(request, "core/contacto.html")
+
+def gestionperfil(request):
+    return render(request, "core/gestionperfil.html")
