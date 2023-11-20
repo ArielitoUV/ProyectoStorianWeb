@@ -27,5 +27,5 @@ def mapa(request):
 def contacto(request):
     return render(request, "core/contacto.html")
 
-def gestionperfil(request):
+def micuenta(request):
     return render(request, "core/micuenta.html")
