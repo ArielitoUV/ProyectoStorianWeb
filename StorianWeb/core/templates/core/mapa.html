@@ -155,6 +155,11 @@
                     // Agrega más lugares según tus necesidades
                 ];
 
+                // Obtén el valor del parámetro 'lugar' de la URL
+                var params = new URLSearchParams(window.location.search);
+                var lugarParam = params.get('lugar');
+
+
                 places.forEach(function (place) {
                     var marker = L.marker(place.coordinates).addTo(map);
                     marker.bindPopup(place.name).on('click', function () {
@@ -173,6 +178,12 @@
                         // Muestra lugares cercanos en el panel
                         updateNearbyPlacesList(nearbyPlaces);
                     });
+
+                    // Si el lugar actual coincide con el lugar del parámetro 'lugar', selecciona ese marcador
+                    if (lugarParam && lugarParam.toLowerCase() === place.name.toLowerCase()) {
+                        marker.openPopup();
+                        map.setView(place.coordinates, 13); // Ajusta la vista del mapa al lugar seleccionado
+                    }                    
                 });
 
                 // Función para obtener lugares cercanos basados en coordenadas
