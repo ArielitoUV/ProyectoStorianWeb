@@ -65,7 +65,7 @@
 .registration-container .btn-primary {
     width: calc(100% - 20px);
     padding: 12px;
-    background-color: #4caf50;
+    background-color: rgb(248, 143, 216, 76, 145);
     color: white;
     border: none;
     border-radius: 5px;
@@ -117,18 +117,19 @@ input[type="password"] {
 .btn-primary {
     width: calc(100% - 20px);
     padding: 12px;
-    background-color: #007bff;
+    background: linear-gradient(45deg, #ff00f2, #9704c4);
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s ease;
+    transition: background 0.3s ease;
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
+    background: linear-gradient(45deg, #9704c4, #ff00f2);
 }
+
 
 body {
     min-height: 100vh;
