@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-rfn46ty#mekx=h)bnr05scq(t)-q7kbyw_ri79tr0*bp1d8mj9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['storianweb.pythonanywhere.com','127.0.0.1']
 
 
 # Application definition
@@ -75,24 +75,16 @@ WSGI_APPLICATION = 'StorianWeb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
-# DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.mysql',
-#             'NAME': 'StorianDB',
-#             'USER': 'arielito',
-#             'PASSWORD': 'aauv1999',
-#             'HOST': 'localhost',
-#             'PORT': '3306',
-#         }
-#     }
+DATABASES = {
+         'default': {
+             'ENGINE': 'django.db.backends.mysql',
+             'NAME': 'storianweb$sw',
+             'USER': 'storianweb',
+             'PASSWORD': 'Root_0987654321',
+             'HOST': 'storianweb.mysql.pythonanywhere-services.com',
+             'PORT': '3306',
+         }
+     }
 
 
 # Password validation
@@ -157,6 +149,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'storianweb@gmail.com' 
-EMAIL_HOST_PASSWORD = 'wtsf clya xeoc dgya'  
+EMAIL_HOST_USER = 'storianweb@gmail.com'
+EMAIL_HOST_PASSWORD = 'wtsf clya xeoc dgya'
 
