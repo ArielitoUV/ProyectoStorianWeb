@@ -29,6 +29,39 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
         <div class="container-fluid">
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    // Restaura el estado de visibilidad almacenado
+                    restoreVisibilityState();
+            
+                    // Maneja el clic en los enlaces de navegación
+                    var navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+                    navLinks.forEach(function(link) {
+                        link.addEventListener("click", function() {
+                            // Almacena en localStorage el enlace seleccionado y oculta su nombre
+                            var selectedLinkId = this.getAttribute('href');
+                            localStorage.setItem('selectedLinkId', selectedLinkId);
+                            hideLinkName(selectedLinkId);
+                        });
+                    });
+                });
+            
+                // Función para restaurar el estado de visibilidad almacenado
+                function restoreVisibilityState() {
+                    var selectedLinkId = localStorage.getItem('selectedLinkId');
+                    if (selectedLinkId) {
+                        hideLinkName(selectedLinkId);
+                    }
+                }
+            
+                // Función para ocultar el nombre del enlace seleccionado
+                function hideLinkName(selectedLinkId) {
+                    var selectedLink = document.querySelector('.navbar-nav .nav-link[href="' + selectedLinkId + '"]');
+                    if (selectedLink) {
+                        selectedLink.style.display = 'none'; // Oculta completamente el enlace
+                    }
+                }
+            </script>
             <!-- Reemplaza el texto con una imagen (ajusta la ruta de la imagen) -->
             <a class="navbar-brand" href="/">
                 <img src="{% static 'assets/img/navbarlogo.png' %}" alt="Logo" style="width: 210px; height: 50px;margin-left: 20px;">
