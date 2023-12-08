@@ -4,68 +4,68 @@
 <link rel="stylesheet" href="{% static 'css/styles-registro.css' %}">
 <div class="row">
     <div class="col-md-6 offset-md-3 registration-container">
-        <form>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
             <h1>Creá una cuenta nueva</h1>
             <p>¿Ya estás registrado? Iniciá sesión aquí.</p>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form.email.label_tag }}
+                        {{ form.email }}
+                        {{ form.email.errors }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.nombre.label_tag }}
+                        {{ form.nombre }}
+                        {{ form.nombre.errors }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.apellido.label_tag }}
+                        {{ form.apellido }}
+                        {{ form.apellido.errors }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.fecha_nacimiento.label_tag }}
+                        {{ form.fecha_nacimiento }}
+                        {{ form.fecha_nacimiento.errors }}
+                    </div>
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="apellido">Apellido</label>
-                    <input type="text" class="form-control" id="apellido" name="apellido" required>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form.avatar.label_tag }}
+                        <select name="{{ form.avatar.name }}" class="form-control">
+                            {% for value, label in form.avatar.field.choices %}
+                                <option value="{{ value }}" {% if form.avatar.value == value %}selected{% endif %}>{{ label }}</option>
+                            {% endfor %}
+                        </select>
+                        {{ form.avatar.errors }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.seudonimo.label_tag }}
+                        {{ form.seudonimo }}
+                        {{ form.seudonimo.errors }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.tiposexo.label_tag }}
+                        {{ form.tiposexo }}
+                        {{ form.tiposexo.errors }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.password1.label_tag }}
+                        {{ form.password1 }}
+                        {{ form.password1.errors }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.password2.label_tag }}
+                        {{ form.password2 }}
+                        {{ form.password2.errors }}
+                    </div>
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="fechaNacimiento">Fecha de Nacimiento</label>
-                    <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" required>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="sexo">Sexo</label>
-                    <select class="form-control" id="sexo" name="sexo" required style="padding: 6px;">
-                        <option value="Masculino">Masculino</option>
-                        <option value="Femenino">Femenino</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="avatar">Avatar (Elige un personaje):</label>
-                    <select class="form-control" id="avatar" name="avatar" onchange="mostrarImagen(this)" required style="padding: 6px;">
-                        <option value="" disabled selected>Selecciona un personaje</option>
-                        <option value="{% static 'assets/img/Ohiggins.jpg' %}">Personaje 1 (Bernardo O'Higgins)</option>
-                        <option value="{% static 'assets/img/arturo.jpg' %}">Personaje 2 (Arturo Prat)</option>
-                        <option value="{% static 'assets/img/GabrielaMistral.jpg' %}">Personaje 3 (Gabriela Mistral)</option>
-                        <option value="{% static 'assets/img/VioletaParra.jpg' %}">Personaje 4 (Violeta Parra)</option>
-                        <option value="{% static 'assets/img/SalvadorReyes.jpg' %}">Personaje 5 (SalvadorReyes)</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-6">
-                    <label>Imagen del Personaje:</label>
-                    <div id="imagenPersonaje"></div>
-                </div>                                               
-                <div class="form-group col-md-6">
-                    <label for="seudonimo">Seudónimo o Alias</label>
-                    <input type="text" class="form-control" id="seudonimo" name="seudonimo">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="contrasena">Contraseña</label>
-                    <input type="password" class="form-control" id="contrasena" name="contrasena" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Registrarse</button>
             </div>
+            <button type="submit" class="btn btn-primary">Registrarse</button>
         </form>
     </div>
 </div>
-<script>
-    function mostrarImagen(select) {
-        // Obtiene la URL seleccionada
-        var selectedOption = select.options[select.selectedIndex].value;
-    
-        // Actualiza la imagen del personaje
-        document.getElementById("imagenPersonaje").innerHTML = '<img src="' + selectedOption + '" alt="Personaje">';
-    }
-    </script>
 {% endblock %}

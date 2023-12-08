@@ -32,11 +32,13 @@ class CustomUserCreationForm(UserCreationForm):
         choices=[('', 'Seleccione una opción'), ('masculino', 'Masculino'), ('femenino', 'Femenino')],
         widget=forms.Select(attrs={'class': 'form-control'}),
     )
+    AVATAR_CHOICES = Usuario.AVATAR_CHOICES
 
-    avatar = forms.ImageField(
+    avatar = forms.ChoiceField(
         label=_("Avatar"),
-        widget=forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
-        required=False,
+        choices=AVATAR_CHOICES,
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        required=True,  # Puedes cambiarlo a False si no es obligatorio
     )
 
     password1 = forms.CharField(
@@ -54,7 +56,6 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = Usuario
         fields = ['email', 'nombre', 'apellido', 'fecha_nacimiento', 'avatar', 'seudonimo', 'tiposexo', 'password1', 'password2']
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.error_messages['password_mismatch'] = _("Las contraseñas no coinciden.")
