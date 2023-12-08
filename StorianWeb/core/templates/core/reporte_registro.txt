@@ -1,0 +1,12 @@
+Nuevo Registro de Usuario
+
+Se ha registrado un nuevo usuario en Storian Web. A continuación se detallan los datos:
+
+Nombre: {{ usuario.nombre }}
+Apellido: {{ usuario.apellido }}
+Fecha de Nacimiento: {{ usuario.fecha_nacimiento }}
+Seudonimo: {{ usuario.seudonimo }}
+Email: {{ usuario.email }}
+Tipo de Sexo: {{ usuario.tiposexo }}
+
+Storian Web - Notificación Automática
