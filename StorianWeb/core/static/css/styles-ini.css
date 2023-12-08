@@ -55,10 +55,24 @@ a {
   margin-left: 10px; /* Ajusta el margen izquierdo */
 }
 
-.form-group input {
-  display: block;
-  margin: 10px;
+/* Estilos compartidos para ambos campos */
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  width: calc(100% - -145px);
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 5px;
+  outline-color: rgba(0, 0, 0, 0.5);
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+              rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+              rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+              rgba(60, 66, 87, 0.16) 0px 0px 0px 1px, 
+              rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+              rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+              rgba(0, 0, 0, 0) 0px 0px 0px 0px;
 }
+
 
 .flex-flex {
   display: flex;
