@@ -7,6 +7,12 @@ body {
     margin: 0;
 }
 
+img {
+    width: 500px;
+    height: 320px;
+    margin-top: 20px; /* Ajusta el espacio entre el título y la imagen según sea necesario */
+}
+
 .container {
     max-width: 960px;
     margin: 0 auto;
