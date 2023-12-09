@@ -3,6 +3,22 @@ from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.utils.translation import gettext_lazy as _
 from django import forms
 from .models import Usuario
+from .models import Resena
+
+class ResenaForm(forms.ModelForm):
+    class Meta:
+        model = Resena
+        fields = ['nombre_completo', 'email', 'fecha', 'lugar_visitado', 'calificacion_estrellas', 'comentario']
+
+    def __init__(self, *args, **kwargs):
+        super(ResenaForm, self).__init__(*args, **kwargs)
+        # Puedes personalizar el formulario aquí si es necesario
+
+    def enviar_notificacion_admin(self):
+        # Aquí puedes agregar la lógica para enviar una notificación al administrador por correo electrónico.
+        # Utiliza la información del formulario y envía un correo electrónico al administrador.
+        pass
+
 
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(
@@ -95,3 +111,42 @@ class CustomAuthenticationForm(AuthenticationForm):
 
 # class CambiarContraseñaForm(PasswordChangeForm):
 #     pass
+
+
+
+
+
+class ResenaForm(forms.ModelForm):
+    nombre_completo = forms.CharField(
+        label=_("Nombre Completo"),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su nombre completo'}),
+    )
+    email = forms.EmailField(
+        label=_('Correo electrónico'),
+        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese correo electrónico'}),
+    )
+    fecha = forms.DateField(
+        label=_("Fecha de visita"),
+        input_formats=['%d-%m-%Y'],
+        widget=forms.TextInput(attrs={'class': 'form-control datepicker', 'placeholder': 'DD-MM-YYYY'}),
+    )
+    lugar_visitado = forms.CharField(
+        label=_("Lugar visitado"),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el lugar visitado'}),
+    )
+    calificacion_estrellas = forms.IntegerField(
+        label=_("Calificación (estrellas)"),
+        widget=forms.NumberInput(attrs={'class': 'form-control', 'type': 'range', 'min': 1, 'max': 5, 'step': 1}),
+    )
+    comentario = forms.CharField(
+        label=_("Comentarios"),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese sus comentarios'}),
+    )
+
+    class Meta:
+        model = Resena
+        fields = ['nombre_completo', 'email', 'fecha', 'lugar_visitado', 'calificacion_estrellas', 'comentario']
+
+    def __init__(self, *args, **kwargs):
+        super(ResenaForm, self).__init__(*args, **kwargs)
+        # Puedes personalizar el formulario aquí si es necesario

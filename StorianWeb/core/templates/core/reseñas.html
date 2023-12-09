@@ -1,84 +1,91 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% block content %}
-</head>
-<link rel="stylesheet" href="{% static 'css/styles-reseña.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles-reseña.css' %}">
     <div class="container mt-5">
-        <div class="titulo-reseña centrado"><h2>Experiencia de su Visita</h2></div>
-        <div class="subtitulo-reseña centrado"><p>"¡Comparte tu experiencia! Queremos conocer todos los detalles de tu visita para enriquecer nuestra comunidad historica"</p></div>
-        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titulo-reseña centrado"><h2>Experiencia de su Visita</h2></div>
+                <div class="subtitulo-reseña centrado">
+                    <p>"¡Comparte tu experiencia! Queremos conocer todos los detalles de tu visita para enriquecer nuestra comunidad histórica"</p>
+                </div>
 
-        <form>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="nombreCompleto">Nombre Completo:</label>
-                    <input type="text" class="form-control" id="nombreCompleto" placeholder="Tu Nombre Completo">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="email">Email:</label>
-                    <input type="email" class="form-control" id="email" placeholder="Tu Email">
-                </div>
-            </div>
+                <form method="post" action="{% url 'registrar_resena' %}">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form.nombre_completo.label_tag }}
+                            {{ form.nombre_completo }}
+                        </div>
 
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="fechaVisita">Fecha de Visita:</label>
-                    <input type="date" class="form-control" id="fechaVisita">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="lugarVisita">Lugar Visitado:</label>
-                    <input type="text" class="form-control" id="lugarVisita" placeholder="Lugar Visitado">
-                </div>
-            </div>
+                        <div class="form-group col-md-6">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                        </div>
+                    </div>
 
-            <div class="form-group centrado">
-                <label for="calificacion">Calificación:</label>
-                <div class="estrellas">
-                    <span class="estrella" onclick="calificar(1)">&#9733;</span>
-                    <span class="estrella" onclick="calificar(2)">&#9733;</span>
-                    <span class="estrella" onclick="calificar(3)">&#9733;</span>
-                    <span class="estrella" onclick="calificar(4)">&#9733;</span>
-                    <span class="estrella" onclick="calificar(5)">&#9733;</span>
-                </div>
-                <input type="hidden" id="calificacion" name="calificacion" value="0">
-            </div>
-            <script>
-                const estrellas = document.querySelectorAll(".estrella");
-            
-                function calificar(valor) {
-                    document.getElementById("calificacion").value = valor;
-                    estrellas.forEach((estrella, index) => {
-                        if (index < valor) {
-                            estrella.classList.add("seleccionada");
-                        } else {
-                            estrella.classList.remove("seleccionada");
-                        }
-                    });
-                }
-            </script>
-            
-            <style>
-                .estrellas {
-                    font-size: 24px;
-                }
-            
-                .estrella {
-                    cursor: pointer;
-                }
-            
-                .estrella.seleccionada {
-                    color: gold;
-                }
-            </style>
-            <div class="form-group">
-                <label for="comentarios">Comentarios:</label>
-                <textarea class="form-control" id="comentarios" rows="4" placeholder="Escribe tus comentarios aquí"></textarea>
-            </div>
-            <div class="boton-reseña centrado">
-                <button type="submit" class="btn btn-primary">Guardar</button>
-            </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form.fecha.label_tag }}
+                            {{ form.fecha }}
+                        </div>
 
-        </form>
+                        <div class="form-group col-md-6">
+                            {{ form.lugar_visitado.label_tag }}
+                            {{ form.lugar_visitado }}
+                        </div>
+                    </div>
+
+                    <div class="form-group" style=text-align:center ;>
+                        <label for="calificacion">Calificación:</label>
+                        <div class="estrellas">
+                            <span class="estrella" onclick="calificar(1)">&#9733;</span>
+                            <span class="estrella" onclick="calificar(2)">&#9733;</span>
+                            <span class="estrella" onclick="calificar(3)">&#9733;</span>
+                            <span class="estrella" onclick="calificar(4)">&#9733;</span>
+                            <span class="estrella" onclick="calificar(5)">&#9733;</span>
+                        </div>
+                        <input type="hidden" id="id_calificacion_estrellas" name="calificacion_estrellas" value="0">
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.comentario.label_tag }}
+                        {{ form.comentario }}
+                    </div>
+
+                    <div class="boton-reseña centrado">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    {% endblock %}
 
+    <style>
+        .estrellas {
+            font-size: 24px;
+        }
+
+        .estrella {
+            cursor: pointer;
+        }
+
+        .estrella.seleccionada {
+            color: gold;
+        }
+    </style>
+    <script>
+        const estrellas = document.querySelectorAll(".estrella");
+
+        function calificar(valor) {
+            document.getElementById("id_calificacion_estrellas").value = valor;
+            estrellas.forEach((estrella, index) => {
+                if (index < valor) {
+                    estrella.classList.add("seleccionada");
+                } else {
+                    estrella.classList.remove("seleccionada");
+                }
+            });
+        }
+    </script>
+{% endblock %}

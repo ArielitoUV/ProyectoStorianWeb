@@ -45,3 +45,15 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 
     def get_full_name(self):
         return f'{self.nombre} {self.apellido}'
+    
+
+class Resena(models.Model):
+    nombre_completo = models.CharField(max_length=100)
+    email = models.EmailField()
+    fecha = models.DateField()
+    lugar_visitado = models.CharField(max_length=255)
+    calificacion_estrellas = models.PositiveIntegerField()
+    comentario = models.CharField(max_length=500)
+
+    def __str__(self):
+        return f'Reseña de {self.nombre_completo} para {self.lugar_visitado}'
