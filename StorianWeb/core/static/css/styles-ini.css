@@ -125,17 +125,29 @@ a {
 
 /* Estilos para el botón de envío */
 .btn-primary {
-  width: calc(100% - 20px);
+  width: 100%;
   padding: 12px;
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 30px;
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease;
 }
 
 .btn-primary:hover {
-  background-color: #0056b3;
+  background-color: #03376d;
+}
+
+
+.forgot-password a, .join-now a {
+  color: #e809b7;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.forgot-password a:hover, .join-now a:hover {
+  color: rgb(100, 3, 84);
 }

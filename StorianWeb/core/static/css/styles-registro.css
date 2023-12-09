@@ -143,3 +143,14 @@ body {
     border-radius: 5px;  /* Ajusta según sea necesario */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);  /* Efecto de sombra */
 }
+
+.forgot-password a, .join-now a {
+    color: #e809b7;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  .forgot-password a:hover, .join-now a:hover {
+    color: rgb(100, 3, 84);
+  }

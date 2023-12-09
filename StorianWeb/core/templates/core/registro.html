@@ -76,7 +76,9 @@
             {% csrf_token %}
             {{ form.non_field_errors }}
             <h1>Creá una cuenta nueva</h1>
-            <p>¿Ya estás registrado? Iniciá sesión aquí.</p>
+            <p class="join-now">
+                ¿Ya tienes una cuenta? <a href="{% url 'iniciar_sesion' %}">Inicia sesión aquí</a>
+            </p>
             <div class="form-group">
                 {{ form.email.label_tag }}
                 {{ form.email }}
