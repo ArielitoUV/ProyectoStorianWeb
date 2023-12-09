@@ -150,3 +150,7 @@ class ResenaForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ResenaForm, self).__init__(*args, **kwargs)
         # Puedes personalizar el formulario aquí si es necesario
+
+
+class BusquedaForm(forms.Form):
+    search_term = forms.CharField(max_length=255)

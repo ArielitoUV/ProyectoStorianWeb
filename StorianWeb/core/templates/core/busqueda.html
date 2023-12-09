@@ -6,28 +6,51 @@
 
 <div class="search-container">
     <h1>Busqueda de Lugares Historicos</h1>
-    <div class="search-bar">
-        <input type="text" id="search-input" placeholder="Buscar lugares...">
-    </div>
-    <button class="btn btn-custom btn-lg" onclick="buscarLugar()">Buscar</button>
-    <button class="btn btn-custom btn-lg" onclick="accederAMapa()">Acceder a Mapa</button>
+    <form id="search-form">
+        {% csrf_token %}
+        <div class="search-bar">
+            <input type="text" id="search-input" name="search_term" placeholder="Buscar lugares...">
+        </div>
+        <button type="button" class="btn btn-custom btn-lg" onclick="buscarLugar()">Buscar</button>
+        <button type="button" class="btn btn-custom btn-lg" onclick="accederAMapa()">Acceder a Mapa</button>
+    </form>
+    <div id="suggestions-container"></div>
 </div>
 
 
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     function buscarLugar() {
-        // Obtiene el valor ingresado en el campo de búsqueda
-        var lugar = document.getElementById('search-input').value;
+        var inputElement = document.getElementById('search-input');
+        var search_term = inputElement.value;
 
-        // Redirige a la página del mapa con el lugar como parámetro
-        window.location.href = "/mapa/?lugar=" + encodeURIComponent(lugar);
+        // Hacer la solicitud Ajax
+        axios.post('/autocompletar_lugares/', {search_term: search_term})
+            .then(function (response) {
+                mostrarSugerencias(response.data.sugerencias);
+            })
+            .catch(function (error) {
+                console.error('Error al obtener sugerencias', error);
+            });
     }
 
-    function accederAMapa() {
-        // Redirige a la página del mapa sin ningún parámetro
-        window.location.href = "/mapa/";
+    function mostrarSugerencias(sugerencias) {
+        // Aquí puedes mostrar las sugerencias, por ejemplo, en un cuadro desplegable
+        var suggestionsContainer = document.getElementById('suggestions-container');
+        suggestionsContainer.innerHTML = '';
+
+        sugerencias.forEach(function (sugerencia) {
+            var suggestionElement = document.createElement('div');
+            suggestionElement.innerText = sugerencia.nombre;
+            suggestionElement.addEventListener('click', function () {
+                window.location.href = '/ver_lugar/' + sugerencia.id;
+            });
+            suggestionsContainer.appendChild(suggestionElement);
+        });
     }
 </script>
-    {% endblock %}
+
+{% endblock %}
 </body>
 </html>

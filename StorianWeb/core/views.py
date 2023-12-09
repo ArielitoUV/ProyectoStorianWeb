@@ -11,6 +11,11 @@ from django.shortcuts import render, redirect
 # from .forms import PerfilForm, CambiarContraseñaForm
 from .forms import ResenaForm
 from .models import Resena
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from .models import Lugar
+
+
 def registrar_usuario(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -85,6 +90,19 @@ def registrar_resena(request):
         form = ResenaForm()
         
     return render(request, 'core/reseñas.html', {'form': form})
+
+
+# views.py
+
+
+@require_POST
+def autocompletar_lugares(request):
+    search_term = request.POST.get('search_term', '')
+    lugares = Lugar.objects.filter(nombre__icontains=search_term)
+    sugerencias = [{'id': lugar.id, 'nombre': lugar.nombre} for lugar in lugares]
+    return JsonResponse({'sugerencias': sugerencias})
+
+
 
 
 def planificar(request):
