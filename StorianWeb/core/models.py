@@ -57,3 +57,13 @@ class Resena(models.Model):
 
     def __str__(self):
         return f'Reseña de {self.nombre_completo} para {self.lugar_visitado}'
+
+
+class Lugar(models.Model):
+    nombre = models.CharField(max_length=100)
+    latitud = models.FloatField()
+    longitud = models.FloatField()
+    descripcion = models.TextField()
+
+    def __str__(self):
+        return self.nombre
