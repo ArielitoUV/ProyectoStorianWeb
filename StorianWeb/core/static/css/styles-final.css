@@ -89,3 +89,9 @@ p {
 }
 
 
+.boton-enviar {
+    background: linear-gradient(to right, #ff5722, #ff8a65);
+    color: #fff;
+    border-color: #ff5722;
+    margin-top: 60px;
+}
