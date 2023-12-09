@@ -77,7 +77,8 @@ def registrar_resena(request):
             message.send(fail_silently=False)
             
             # Redirige a alguna página después de la creación de la reseña
-            return redirect('reseñaagrax')  # Puedes crear una página de agradecimiento
+            return redirect('finalresena')  # Puedes crear una página de agradecimiento
+            
             
     else:
         # Si no es una solicitud POST, crea un nuevo formulario (limpio)
@@ -97,5 +98,5 @@ def contacto(request):
 
 def micuenta(request):
     return render(request, "core/micuenta.html")
-def finalreseña(request):
-    return render(request, "core/finalreseña.html")
+def finalresena(request):
+    return render(request, "core/finalresena.html")
