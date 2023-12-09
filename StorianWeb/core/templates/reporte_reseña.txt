@@ -1,0 +1,8 @@
+Nueva Reseña en Storian-Web
+
+Nombre del Usuario: {{ resena.nombre_completo }}
+Correo Electrónico: {{ resena.email }}
+Fecha de Visita: {{ resena.fecha }}
+Lugar Visitado: {{ resena.lugar_visitado }}
+Calificación (estrellas): {{ resena.calificacion_estrellas }}
+Comentarios: {{ resena.comentario }}

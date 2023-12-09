@@ -9,6 +9,8 @@ from django.core.mail import EmailMessage
 # from django.contrib.auth import update_session_auth_hash
 from django.shortcuts import render, redirect
 # from .forms import PerfilForm, CambiarContraseñaForm
+from .forms import ResenaForm
+from .models import Resena
 def registrar_usuario(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -55,8 +57,34 @@ def busqueda(request):
 def viajetiempo(request):
     return render(request, "core/viajetiempo.html")
 
-def reseñas(request):
-    return render(request, "core/reseñas.html")
+
+
+def registrar_resena(request):
+    if request.method == 'POST':
+        form = ResenaForm(request.POST)
+        if form.is_valid():
+            resena = form.save()
+            
+            # Renderizar la plantilla con los datos de la reseña
+            email_body = render_to_string('core/reporte_resena.txt', {'resena': resena})
+            
+            # Configurar el correo
+            subject = 'Nueva Reseña en Storian-Web'
+            from_email = settings.EMAIL_HOST_USER
+            to_email = ['storianweb@gmail.com']  # Cambia a la dirección de correo del administrador
+            # Configurar el correo como mensaje de texto plano
+            message = EmailMessage(subject, email_body, from_email, to_email)
+            message.send(fail_silently=False)
+            
+            # Redirige a alguna página después de la creación de la reseña
+            return redirect('reseñaagrax')  # Puedes crear una página de agradecimiento
+            
+    else:
+        # Si no es una solicitud POST, crea un nuevo formulario (limpio)
+        form = ResenaForm()
+        
+    return render(request, 'core/reseñas.html', {'form': form})
+
 
 def planificar(request):
     return render(request, "core/planificar.html")
