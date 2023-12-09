@@ -1,0 +1,97 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(to bottom right, #f7a31d, #f79fc8); /* Agrega un fondo degradado */
+}
+
+.main-container {
+    max-width: 600px;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.8); /* Agrega un fondo difuminado con opacidad */
+    backdrop-filter: blur(10px); /* Aplica un efecto de desenfoque al fondo difuminado */
+}
+
+
+img {
+    width: 500px;
+    height: 320px;
+    margin-top: 20px; /* Ajusta el espacio entre el título y la imagen según sea necesario */
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: -10px;
+}
+
+h1 {
+    color: #883084;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+.button {
+    background-color: #f7a31d;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin-bottom: 40px;
+}
+
+.social-icons {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.social-icons li {
+    margin: 0 10px;
+}
+
+.social-icons a {
+    color: #333;
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    color: #f7a31d;
+}
+.timeline-container {
+    display: flex; /* Hace que los elementos estén en línea */
+}
+
+.timeline-item {
+    margin-right: 10px; /* Ajusta el margen derecho según sea necesario */
+}
+.timeline-item img {
+    width: 50px;  /* Ajusta el ancho según sea necesario */
+    height: 50px; /* Ajusta la altura según sea necesario */
+    margin-left: 10px; /* Ajusta el margen izquierdo según sea necesario para mover la imagen */
+}
+
+
+.boton-enviar {
+    background: linear-gradient(to right, #ff5722, #ff8a65);
+    color: #fff;
+    border-color: #ff5722;
+    margin-top: 60px;
+}
