@@ -2,67 +2,132 @@
 {% load static %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/styles-registro.css' %}">
+<style>
+    .registration-container {
+        max-width: 600px; /* Ajusta el ancho máximo de la columna */
+        margin: 0 auto; /* Centra el contenedor */
+    }
+
+    .avatar-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;  /* Centra las miniaturas */
+    }
+
+    .avatar-thumbnail {
+        position: relative;
+        width: 70px;  /* Ajusta el ancho deseado para las miniaturas */
+        height: auto;
+        cursor: pointer;
+        overflow: hidden;  /* Oculta partes de la imagen que excedan el tamaño */
+        border: 2px solid transparent;  /* Borde inicial */
+        transition: border-color 0.3s;  /* Agrega transición al cambio de borde */
+    }
+
+    .avatar-thumbnail img {
+        width: 100%;  /* Ajusta la imagen al 100% del contenedor */
+        height: auto;
+        transition: transform 0.1s;  /* Agrega transición al cambio de posición */
+    }
+
+    .avatar-thumbnail input {
+        display: none;  /* Oculta los radios para las miniaturas */
+    }
+
+    .avatar-thumbnail label {
+        text-align: center;
+        display: block;
+    }
+
+    .avatar-selected {
+        border-color: #de4a85;  /* Color del borde cuando está seleccionado */
+        animation: vibrate 0.3s ease infinite;  /* Agrega la animación de vibración */
+    }
+
+    @keyframes vibrate {
+        0% { transform: translateX(0); }
+        25% { transform: translateX(2px) translateY(-2px); }
+        50% { transform: translateX(-2px) translateY(2px); }
+        75% { transform: translateX(2px) translateY(-2px); }
+        100% { transform: translateX(0); }
+    }
+
+    .hidden {
+        display: none;  /* Oculta las miniaturas no seleccionadas */
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const avatarThumbnails = document.querySelectorAll('.avatar-thumbnail');
+
+        avatarThumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', function () {
+                // Resalta la opción seleccionada
+                avatarThumbnails.forEach(thumb => thumb.classList.remove('avatar-selected'));
+                this.classList.add('avatar-selected');
+            });
+        });
+    });
+</script>
 <div class="row">
-    <div class="col-md-6 offset-md-3 registration-container">
+    <div class="col-md-12 registration-container">
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.non_field_errors }}
             <h1>Creá una cuenta nueva</h1>
             <p>¿Ya estás registrado? Iniciá sesión aquí.</p>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        {{ form.email.label_tag }}
-                        {{ form.email }}
-                        {{ form.email.errors }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.nombre.label_tag }}
-                        {{ form.nombre }}
-                        {{ form.nombre.errors }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.apellido.label_tag }}
-                        {{ form.apellido }}
-                        {{ form.apellido.errors }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.fecha_nacimiento.label_tag }}
-                        {{ form.fecha_nacimiento }}
-                        {{ form.fecha_nacimiento.errors }}
-                    </div>
+            <div class="form-group">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+                {{ form.email.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.nombre.label_tag }}
+                {{ form.nombre }}
+                {{ form.nombre.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.apellido.label_tag }}
+                {{ form.apellido }}
+                {{ form.apellido.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.fecha_nacimiento.label_tag }}
+                {{ form.fecha_nacimiento }}
+                {{ form.fecha_nacimiento.errors }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.avatar.id_for_label }}">Selecciona tu avatar:</label>
+                <div class="avatar-container">
+                    {% for value, label in form.avatar.field.choices %}
+                        <label class="avatar-thumbnail">
+                            <input type="radio" name="{{ form.avatar.name }}" value="{{ value }}">
+                            <img src="{% static 'assets/avatars/' %}{{ value }}" alt="{{ label }}">
+                        </label>
+                    {% endfor %}
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        {{ form.avatar.label_tag }}
-                        <select name="{{ form.avatar.name }}" class="form-control">
-                            {% for value, label in form.avatar.field.choices %}
-                                <option value="{{ value }}" {% if form.avatar.value == value %}selected{% endif %}>{{ label }}</option>
-                            {% endfor %}
-                        </select>
-                        {{ form.avatar.errors }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.seudonimo.label_tag }}
-                        {{ form.seudonimo }}
-                        {{ form.seudonimo.errors }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.tiposexo.label_tag }}
-                        {{ form.tiposexo }}
-                        {{ form.tiposexo.errors }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.password1.label_tag }}
-                        {{ form.password1 }}
-                        {{ form.password1.errors }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.password2.label_tag }}
-                        {{ form.password2 }}
-                        {{ form.password2.errors }}
-                    </div>
-                </div>
+                {{ form.avatar.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.seudonimo.label_tag }}
+                {{ form.seudonimo }}
+                {{ form.seudonimo.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.tiposexo.label_tag }}
+                {{ form.tiposexo }}
+                {{ form.tiposexo.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.password1.label_tag }}
+                {{ form.password1 }}
+                {{ form.password1.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.password2.label_tag }}
+                {{ form.password2 }}
+                {{ form.password2.errors }}
             </div>
             <button type="submit" class="btn btn-primary">Registrarse</button>
         </form>

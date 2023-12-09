@@ -24,14 +24,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     fecha_nacimiento = models.DateField(null=True)
     email = models.EmailField(unique=True)
     seudonimo = models.CharField(max_length=100)
-    AVATAR_CHOICES = [
-        ('chico.png', 'Avatar Chico'),
-        ('madre.png', 'Avatar Madre'),
-        ('papa.png', 'Avatar Papa'),
-        # Agrega más opciones según sea necesario
-    ]
-    avatar = models.CharField(max_length=100, null=True, blank=True, choices=AVATAR_CHOICES)
-
+    avatar = models.CharField(max_length=100, null=True, blank=True)
     
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)

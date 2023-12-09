@@ -24,7 +24,7 @@ class CustomUserCreationForm(UserCreationForm):
     fecha_nacimiento = forms.DateField(
         label=_("Fecha de Nacimiento"),
         input_formats=['%d-%m-%Y'],
-        widget=forms.TextInput(attrs={'class': 'form-control datepicker', 'placeholder': 'Ingrese su fecha de nacimiento'}),
+        widget=forms.TextInput(attrs={'class': 'form-control datepicker', 'placeholder': 'Fecha de nacimiento DD-MM-YYYY'}),
     )
 
     tiposexo = forms.ChoiceField(
@@ -32,13 +32,21 @@ class CustomUserCreationForm(UserCreationForm):
         choices=[('', 'Seleccione una opción'), ('masculino', 'Masculino'), ('femenino', 'Femenino')],
         widget=forms.Select(attrs={'class': 'form-control'}),
     )
-    AVATAR_CHOICES = Usuario.AVATAR_CHOICES
+
+    AVATAR_CHOICES = [
+        ('chico.png', 'Chico'),
+        ('papa.png', 'Papa'),
+        ('madre.png', 'Madre'),
+        ('superestrella.png', 'Rebelde'),
+        ('estudianteF.png', 'EstudianteF'),
+        ('estudianteM.png', 'EstudianteM'),
+        # Agrega más opciones de avatar según tus necesidades
+    ]
 
     avatar = forms.ChoiceField(
-        label=_("Avatar"),
         choices=AVATAR_CHOICES,
-        widget=forms.Select(attrs={'class': 'form-control'}),
-        required=True,  # Puedes cambiarlo a False si no es obligatorio
+        widget=forms.RadioSelect,
+        required=True,
     )
 
     password1 = forms.CharField(
@@ -56,6 +64,7 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = Usuario
         fields = ['email', 'nombre', 'apellido', 'fecha_nacimiento', 'avatar', 'seudonimo', 'tiposexo', 'password1', 'password2']
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.error_messages['password_mismatch'] = _("Las contraseñas no coinciden.")
