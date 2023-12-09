@@ -18,6 +18,7 @@ urlpatterns = [
     path('mapa/',views.mapa,name="mapa"),
     path('contacto/',views.contacto,name="contacto"),
     path('micuenta/',views.micuenta,name="micuenta"),
+    path('finalreseña/',views.finalreseña,name="finalreseña"),
     path('admin/', admin.site.urls),
 ]
 

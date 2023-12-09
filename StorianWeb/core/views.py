@@ -69,3 +69,5 @@ def contacto(request):
 
 def micuenta(request):
     return render(request, "core/micuenta.html")
+def finalreseña(request):
+    return render(request, "core/finalreseña.html")
