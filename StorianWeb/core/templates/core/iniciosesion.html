@@ -11,15 +11,12 @@
       <div class="formbg">
         <div class="flex-justifyContent--center">
           <span class="padding-bottom--15" style="text-align: center;">Iniciar sesión para continuar</span>
-          <form id="stripe-login">
-              <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-primary" >Iniciar sesión</button>
-                <p class="join-now">
-                  ¿Aún no tienes una cuenta? <a href="{% url 'registrar_usuario' %}">Únete aquí</a>
-              </p>
-              </form>
+          <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary" >Iniciar sesión</button>
+            <p class="join-now">
+              ¿Aún no tienes una cuenta? <a href="{% url 'registrar_usuario' %}">Únete aquí</a></p>
           </form>
         </div>
       </div>
