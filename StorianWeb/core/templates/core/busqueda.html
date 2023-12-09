@@ -5,48 +5,52 @@
 <link rel="stylesheet" href="{% static 'css/styles-busqueda.css' %}">
 
 <div class="search-container">
-    <h1>Busqueda de Lugares Historicos</h1>
-    <form id="search-form">
-        {% csrf_token %}
-        <div class="search-bar">
-            <input type="text" id="search-input" name="search_term" placeholder="Buscar lugares...">
-        </div>
-        <button type="button" class="btn btn-custom btn-lg" onclick="buscarLugar()">Buscar</button>
-        <button type="button" class="btn btn-custom btn-lg" onclick="accederAMapa()">Acceder a Mapa</button>
+    <h2>Busqueda de Lugares Historicos</h2>
+    <form method="get">
+        {{ form.as_p }}
+        {% if lugares %}
+        <h3>Resultados:</h3>
+        <ul>
+            {% for lugar in lugares %}
+                <li>{{ lugar.nombre }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
     </form>
-    <div id="suggestions-container"></div>
 </div>
 
-
-
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    function buscarLugar() {
-        var inputElement = document.getElementById('search-input');
-        var search_term = inputElement.value;
+    // Añade un evento para detectar cambios en el input de búsqueda
+    document.getElementById('id_nombre_lugar').addEventListener('input', function() {
+        // Obtiene el valor actual del input
+        var nombreLugar = this.value;
 
-        // Hacer la solicitud Ajax
-        axios.post('/autocompletar_lugares/', {search_term: search_term})
-            .then(function (response) {
-                mostrarSugerencias(response.data.sugerencias);
-            })
-            .catch(function (error) {
-                console.error('Error al obtener sugerencias', error);
-            });
-    }
+        // Realiza una petición AJAX para obtener resultados de autocompletado
+        if (nombreLugar.length > 2) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Parsea la respuesta JSON y actualiza la lista de resultados
+                    var resultados = JSON.parse(xhr.responseText);
+                    actualizarResultados(resultados);
+                }
+            };
 
-    function mostrarSugerencias(sugerencias) {
-        // Aquí puedes mostrar las sugerencias, por ejemplo, en un cuadro desplegable
-        var suggestionsContainer = document.getElementById('suggestions-container');
-        suggestionsContainer.innerHTML = '';
+            // Realiza la petición GET a la vista de autocompletado
+            xhr.open('GET', '/autocompletar_lugares/?nombre_lugar=' + encodeURIComponent(nombreLugar), true);
+            xhr.send();
+        }
+    });
 
-        sugerencias.forEach(function (sugerencia) {
-            var suggestionElement = document.createElement('div');
-            suggestionElement.innerText = sugerencia.nombre;
-            suggestionElement.addEventListener('click', function () {
-                window.location.href = '/ver_lugar/' + sugerencia.id;
-            });
-            suggestionsContainer.appendChild(suggestionElement);
+    // Función para actualizar la lista de resultados
+    function actualizarResultados(resultados) {
+        var listaResultados = document.getElementById('lista-resultados');
+        listaResultados.innerHTML = '';
+
+        resultados.forEach(function(lugar) {
+            var li = document.createElement('li');
+            li.textContent = lugar.nombre;
+            listaResultados.appendChild(li);
         });
     }
 </script>
@@ -54,3 +58,10 @@
 {% endblock %}
 </body>
 </html>
+
+
+<!-- onclick="buscarLugar()" -->
+
+<!--         <button type="submit" class="btn btn-custom btn-lg" >Buscar</button>
+        <button type="button" class="btn btn-custom btn-lg" onclick="accederAMapa()">Acceder a Mapa</button>
+ -->

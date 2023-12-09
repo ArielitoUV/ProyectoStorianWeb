@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from core import views
-from core.views import registrar_usuario,iniciar_sesion,registrar_resena,autocompletar_lugares
+from core.views import registrar_usuario,iniciar_sesion,registrar_resena,busqueda_lugares
 
 
 
@@ -12,7 +12,7 @@ urlpatterns = [
     # path('iniciosesion/',views.iniciosesion,name="iniciosesion"),
     path('iniciosesion/', iniciar_sesion, name='iniciar_sesion'),
     path('busqueda/',views.busqueda,name="busqueda"),
-    path('autocompletar_lugares/', autocompletar_lugares, name='autocompletar_lugares'),
+    path('busqueda_lugares/', busqueda_lugares, name='busqueda_lugares'),
     path('viajetiempo/',views.viajetiempo,name="viajetiempo"),
     # path('reseñas/',views.reseñas,name="reseñas"),
     path('registrar_resena/', registrar_resena, name='registrar_resena'),

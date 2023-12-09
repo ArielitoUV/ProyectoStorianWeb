@@ -10,10 +10,9 @@ from django.core.mail import EmailMessage
 from django.shortcuts import render, redirect
 # from .forms import PerfilForm, CambiarContraseñaForm
 from .forms import ResenaForm
-from .models import Resena
-from django.http import JsonResponse
-from django.views.decorators.http import require_POST
 from .models import Lugar
+from .forms import BusquedaLugarForm
+
 
 
 def registrar_usuario(request):
@@ -47,7 +46,7 @@ def iniciar_sesion(request):
             user = form.get_user()
             login(request, user)
             # Redirige a la página de inicio después del inicio de sesión exitoso
-            return redirect('busqueda')
+            return redirect('autocompletar_lugares')
         else:
             print(form.errors)
     else:
@@ -92,15 +91,17 @@ def registrar_resena(request):
     return render(request, 'core/reseñas.html', {'form': form})
 
 
-# views.py
 
+def busqueda_lugares(request):
+    form = BusquedaLugarForm(request.GET)
+    lugares = []
 
-@require_POST
-def autocompletar_lugares(request):
-    search_term = request.POST.get('search_term', '')
-    lugares = Lugar.objects.filter(nombre__icontains=search_term)
-    sugerencias = [{'id': lugar.id, 'nombre': lugar.nombre} for lugar in lugares]
-    return JsonResponse({'sugerencias': sugerencias})
+    if form.is_valid():
+        busqueda = form.cleaned_data['busqueda']
+        lugares = Lugar.objects.filter(nombre__icontains=busqueda)
+
+    return render(request, 'busqueda.html', {'form': form, 'lugares': lugares})
+
 
 
 

@@ -152,5 +152,5 @@ class ResenaForm(forms.ModelForm):
         # Puedes personalizar el formulario aquí si es necesario
 
 
-class BusquedaForm(forms.Form):
-    search_term = forms.CharField(max_length=255)
+class BusquedaLugarForm(forms.Form):
+    busqueda = forms.CharField(label='Buscar lugar', max_length=255)
