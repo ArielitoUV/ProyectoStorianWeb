@@ -3,38 +3,173 @@
 {% block content %}
     <link rel="stylesheet" href="{% static 'css/styles-viaje.css' %}">
     <!-- Contenido principal -->
-<div class="container-item">
-    <h1 class="title">Viaje en el Tiempo</h1>
-    <div class="search-bar">
-        <input type="text" id="location-input" placeholder="Ingrese lugar deseado">
-    </div>
-    <hr class="divider">
-    <p class="subtitle">Viajar es la mejor manera de perderse y encontrarse al mismo tiempo</p>
-    <hr class="divider">
-    <div class="timeline">
-        <!-- Imagen 1 -->
-        <div class="timeline-item">
-            <img src="{% static 'assets/img/ejViaje.png' %}" alt="Imagen 1">
-            <p>Detalles</p>
+    <div class="container-item">
+        <h1 class="title">Viaje en el Tiempo</h1>
+        <div class="search-bar">
+            <input type="text" id="location-input" placeholder="Ingrese lugar deseado">
+            <div id="sugerencias-container" class="sugerencias-container"></div>
         </div>
-        <!-- Imagen 2 -->
-        <div class="timeline-item">
-            <img src="{% static 'assets/img/ejViaje2.png' %}" alt="Imagen 2">
-            <p>Detalles</p>
-        </div>
-        <!-- Imagen 3 -->
-        <div class="timeline-item">
-            <img src="{% static 'assets/img/ejViaje3.png' %}" alt="Imagen 3">
-            <p>Detalles</p>
-        </div>
-        <!-- Imagen 4 -->
-        <div class="timeline-item">
-            <img src="{% static 'assets/img/ejViaje4.png' %}" alt="Imagen 4">
-            <p>Detalles</p>
+        <div id="resultado" class="resultado-container">
+            <!-- Aquí se mostrarán las imágenes y el texto -->
         </div>
     </div>
-</div>
+
+    <style>
+        body {
+            margin: 0; /* Elimina el margen por defecto del body */
+            padding: 0; /* Elimina el relleno por defecto del body */
+        }
+
+        .search-bar {
+            position: relative;
+        }
+
+        #resultado {
+            display: flex;
+            flex-direction: column; /* Cambia la dirección a columna */
+            align-items: center; /* Centra en el eje transversal (vertical) */
+            margin-top: 20px; /* Agrega espacio en la parte superior */
+        }
+
+        img {
+            max-width: 100%; /* Asegura que las imágenes no excedan el ancho del contenedor */
+            max-height: 400px; /* Ajusta la altura máxima de las imágenes */
+            margin: 10px; /* Agrega espacio entre las imágenes */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave a las imágenes */
+        }
+
+        p {
+            text-align: center; /* Centra el texto debajo de cada imagen */
+            margin-top: 10px; /* Agrega espacio entre el texto e imágenes */
+        }
+
+        #sugerencias-container {
+            position: absolute;
+            top: 150px; /* Ajusta la posición del contenedor de sugerencias */
+            left: 0;
+            width: auto; /* Ajusta automáticamente el ancho al contenido */
+            background-color: transparent;
+            border: none;
+            display: none; /* Oculta las sugerencias inicialmente */
+            z-index: 1;
+            padding: 10px; /* Agrega relleno al contenedor de sugerencias */
+            animation: fadeIn 0.3s ease; /* Agrega una animación de desvanecimiento */
+        }
+
+        .sugerencia {
+            cursor: pointer;
+            padding: 10px;
+            text-align: left;
+            text-transform: uppercase; /* Convierte el texto a mayúsculas */
+            transition: background-color 0.4s ease; /* Agrega una transición de color de fondo */
+        }
+
+        .sugerencia:hover {
+            background-color: #eebaba; /* Cambia el color de fondo al pasar el mouse */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const locationInput = document.getElementById('location-input');
+            const resultadoContainer = document.getElementById('resultado');
+            const sugerenciasContainer = document.getElementById('sugerencias-container');
+
+            // Estructura de datos con información sobre lugares
+            const lugaresData = {
+                'parque ecuador': {
+                    'imagen1': "{% static 'assets/lugares/ecuador1.jpg' %}",
+                    'imagen2': '{% static "assets/lugares/ecuador2.jpg" %}',
+                    'imagen3': '{% static "assets/lugares/ecuador3.jpg" %}',
+                    'texto1': 'Texto pasado 1',
+                    'texto2': 'Texto pasado 2',
+                    'texto3': 'Texto presente',
+                },
+                'plaza independencia': {
+                    'imagen1': '{% static "assets/lugares/independencia1.jpg" %}',
+                    'imagen2': '{% static "assets/lugares/independencia2.jpg" %}',
+                    'imagen3': '{% static "assets/lugares/independencia3.jpg" %}',
+                    'texto1': 'Texto pasado 3',
+                    'texto2': 'Texto pasado 4',
+                    'texto3': 'Texto presente 2',
+                },
+                'monitor huascar': {
+                    'imagen1': '{% static "assets/lugares/huascar1.jpg" %}',
+                    'imagen2': '{% static "assets/lugares/huascar2.jpg" %}',
+                    'texto1': 'Texto pasado 3',
+                    'texto2': 'Texto pasado 4',
+                },
+            };
+
+            locationInput.addEventListener('input', function () {
+                sugerenciasContainer.innerHTML = '';
+
+                const textoIngresado = locationInput.value.trim().toLowerCase();
+
+                // No mostrar sugerencias si el campo está vacío
+                if (textoIngresado === '') {
+                    sugerenciasContainer.style.display = 'none';
+                    return;
+                }
+
+                // Filtra lugares que coincidan con el texto ingresado
+                const sugerencias = Object.keys(lugaresData).filter(lugar =>
+                    lugar.toLowerCase().includes(textoIngresado)
+                );
+
+                // Muestra las sugerencias
+                sugerencias.forEach(sugerencia => {
+                    const divSugerencia = document.createElement('div');
+                    divSugerencia.className = 'sugerencia';
+                    divSugerencia.textContent = sugerencia;
+
+                    divSugerencia.addEventListener('click', function () {
+                        locationInput.value = sugerencia;
+                        mostrarResultado();
+                        sugerenciasContainer.innerHTML = '';
+                    });
+
+                    sugerenciasContainer.appendChild(divSugerencia);
+                });
+
+                // Muestra u oculta el contenedor de sugerencias según si hay sugerencias o no
+                sugerenciasContainer.style.display = sugerencias.length > 0 ? 'block' : 'none';
+            });
+
+            function mostrarResultado() {
+                const lugarSeleccionado = locationInput.value.trim().toLowerCase();
+
+                if (lugarSeleccionado in lugaresData) {
+                    const datosLugar = lugaresData[lugarSeleccionado];
+                    resultadoContainer.innerHTML = '';
+
+                    // Solo crea elementos HTML si hay una imagen disponible
+                    for (let i = 1; datosLugar['imagen' + i]; i++) {
+                        const imagen = document.createElement('img');
+                        imagen.src = datosLugar['imagen' + i];
+                        imagen.alt = 'Imagen ' + i;
+
+                        const texto = document.createElement('p');
+                        texto.textContent = datosLugar['texto' + i];
+
+                        resultadoContainer.appendChild(imagen);
+                        resultadoContainer.appendChild(texto);
+                    }
+                } else {
+                    resultadoContainer.innerHTML = '<p>Lugar no encontrado</p>';
+                }
+            }
+        });
+    </script>
 {% endblock %}
 </body>
-
 </html>
