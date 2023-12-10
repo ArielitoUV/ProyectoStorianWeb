@@ -145,10 +145,28 @@ class ResenaForm(forms.ModelForm):
         # Puedes personalizar el formulario aquí si es necesario
 
 
+# forms.py
+
 class PerfilForm(forms.ModelForm):
+    AVATAR_CHOICES = [
+        ('chico.png', 'Chico'),
+        ('papa.png', 'Papa'),
+        ('madre.png', 'Madre'),
+        ('superestrella.png', 'Rebelde'),
+        ('estudianteF.png', 'EstudianteF'),
+        ('estudianteM.png', 'EstudianteM'),
+        # Agrega más opciones de avatar según tus necesidades
+    ]
+
+    avatar = forms.ChoiceField(
+        choices=AVATAR_CHOICES,
+        widget=forms.RadioSelect,
+        required=True,
+    )
+
     class Meta:
         model = Usuario
-        fields = ['nombre', 'apellido','seudonimo', 'tiposexo', 'fecha_nacimiento', 'avatar']
+        fields = ['nombre', 'apellido', 'seudonimo', 'tiposexo', 'fecha_nacimiento', 'avatar']
 
 class CambiarContraseñaForm(PasswordChangeForm):
     pass
