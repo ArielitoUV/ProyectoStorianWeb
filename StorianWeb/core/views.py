@@ -4,14 +4,14 @@ from django.contrib.auth import login
 from django.template.loader import render_to_string
 from django.conf import settings
 from django.core.mail import EmailMessage
-# from django.contrib.auth.decorators import login_required
-# from django.contrib import messages
-# from django.contrib.auth import update_session_auth_hash
 from django.shortcuts import render, redirect
-# from .forms import PerfilForm, CambiarContraseñaForm
 from .forms import ResenaForm
-from .models import Lugar
-from .forms import BusquedaLugarForm
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
+from .forms import PerfilForm, CambiarContraseñaForm
+
+
 
 
 
@@ -46,7 +46,7 @@ def iniciar_sesion(request):
             user = form.get_user()
             login(request, user)
             # Redirige a la página de inicio después del inicio de sesión exitoso
-            return redirect('busqueda_lugares')
+            return redirect('busqueda')
         else:
             print(form.errors)
     else:
@@ -92,15 +92,25 @@ def registrar_resena(request):
 
 
 
-def busqueda_lugares(request):
-    form = BusquedaLugarForm(request.GET)
-    lugares = []
+@login_required
+def gestionar_perfil(request):
+    perfil_form = PerfilForm(instance=request.user)
+    password_form = CambiarContraseñaForm(request.user)
 
-    if form.is_valid():
-        busqueda = form.cleaned_data['busqueda']
-        lugares = Lugar.objects.filter(nombre__icontains=busqueda)
+    if request.method == 'POST':
+        perfil_form = PerfilForm(request.POST, instance=request.user)
+        password_form = CambiarContraseñaForm(request.user, request.POST)
+        
+        if perfil_form.is_valid() and password_form.is_valid():
+            perfil_form.save()
+            user = password_form.save()
+            update_session_auth_hash(request, user)  # Actualiza la sesión si la contraseña cambió
+            messages.success(request, 'Perfil actualizado exitosamente.')
+            return redirect('gestionar_perfil')  # Redirecciona a la misma vista
+        else:
+            messages.error(request, 'Error al actualizar el perfil. Por favor, corrige los errores.')
 
-    return render(request, 'busqueda.html', {'form': form, 'lugares': lugares})
+    return render(request, 'core/micuenta.html', {'perfil_form': perfil_form, 'password_form': password_form})
 
 
 

@@ -104,13 +104,6 @@ class CustomAuthenticationForm(AuthenticationForm):
         widget=forms.PasswordInput(attrs={'autocomplete': 'current-password', 'class': 'form-control', 'placeholder': 'Ingrese su contraseña'}),
     )
 
-# class PerfilForm(forms.ModelForm):
-#     class Meta:
-#         model = Usuario
-#         fields = ['nombre', 'apellido', 'fecha_nacimiento', 'telefono', 'estado', 'ciudad']
-
-# class CambiarContraseñaForm(PasswordChangeForm):
-#     pass
 
 
 
@@ -152,5 +145,10 @@ class ResenaForm(forms.ModelForm):
         # Puedes personalizar el formulario aquí si es necesario
 
 
-class BusquedaLugarForm(forms.Form):
-    busqueda = forms.CharField(label='Buscar lugar', max_length=255)
+class PerfilForm(forms.ModelForm):
+    class Meta:
+        model = Usuario
+        fields = ['nombre', 'apellido','seudonimo', 'tiposexo', 'fecha_nacimiento', 'avatar']
+
+class CambiarContraseñaForm(PasswordChangeForm):
+    pass

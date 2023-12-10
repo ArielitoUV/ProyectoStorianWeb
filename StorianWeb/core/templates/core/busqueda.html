@@ -5,48 +5,28 @@
 <link rel="stylesheet" href="{% static 'css/styles-busqueda.css' %}">
 
 <div class="search-container">
-    <h2>Busqueda de Lugares Historicos</h2>
-    <form method="get">
-        {{ form.busqueda.label_tag }}
-        {{ form.busqueda }}
-        <button type="button" class="btn btn-custom btn-lg" onclick="accederAMapa()">Acceder a Mapa</button>
-    </form>
-    {% if lugares %}
-        <h3>Resultados:</h3>
-        <ul>
-            {% for lugar in lugares %}
-                <li>{{ lugar.nombre }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    <h1>Busqueda de Lugares Historicos</h1>
+    <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Buscar lugares...">
+    </div>
+    <button class="btn btn-custom btn-lg" onclick="buscarLugar()">Buscar</button>
+    <button class="btn btn-custom btn-lg" onclick="accederAMapa()">Acceder a Mapa</button>
 </div>
 
 <script>
-    const searchInput = document.getElementById('id_busqueda');
-    let typingTimer;
-    const doneTypingInterval = 500; // in milliseconds
+    function buscarLugar() {
+        // Obtiene el valor ingresado en el campo de búsqueda
+        var lugar = document.getElementById('search-input').value;
 
-    searchInput.addEventListener('input', function() {
-        clearTimeout(typingTimer);
-        if (searchInput.value) {
-            typingTimer = setTimeout(performSearch, doneTypingInterval);
-        }
-    });
+        // Redirige a la página del mapa con el lugar como parámetro
+        window.location.href = "/mapa/?lugar=" + encodeURIComponent(lugar);
+    }
 
-    function performSearch() {
-        const searchForm = document.querySelector('form');
-        searchForm.submit();
+    function accederAMapa() {
+        // Redirige a la página del mapa sin ningún parámetro
+        window.location.href = "/mapa/";
     }
 </script>
-
-{% endblock %}
+    {% endblock %}
 </body>
 </html>
-
-
-
-<!-- onclick="buscarLugar()" -->
-
-<!--         <button type="submit" class="btn btn-custom btn-lg" >Buscar</button>
-        <button type="button" class="btn btn-custom btn-lg" onclick="accederAMapa()">Acceder a Mapa</button>
- -->
