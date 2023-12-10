@@ -4,45 +4,49 @@
 <link rel="stylesheet" href="{% static 'css/styles-registro.css' %}">
 <style>
     .registration-container {
-        max-width: 600px; /* Ajusta el ancho máximo de la columna */
-        margin: 0 auto; /* Centra el contenedor */
+        max-width: 600px;
+        margin: 0 auto;
     }
 
     .avatar-container {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
-        justify-content: center;  /* Centra las miniaturas */
+        justify-content: center;
     }
 
     .avatar-thumbnail {
         position: relative;
-        width: 70px;  /* Ajusta el ancho deseado para las miniaturas */
+        width: 70px;
         height: auto;
         cursor: pointer;
-        overflow: hidden;  /* Oculta partes de la imagen que excedan el tamaño */
-        border: 2px solid transparent;  /* Borde inicial */
-        transition: border-color 0.3s;  /* Agrega transición al cambio de borde */
+        overflow: hidden;
+        border: 2px solid transparent;
+        transition: border-color 0.3s;
     }
 
     .avatar-thumbnail img {
-        width: 100%;  /* Ajusta la imagen al 100% del contenedor */
+        width: 100%;
         height: auto;
-        transition: transform 0.1s;  /* Agrega transición al cambio de posición */
+        transition: transform 0.1s;
     }
 
     .avatar-thumbnail input {
-        display: none;  /* Oculta los radios para las miniaturas */
+        display: none;
     }
 
     .avatar-thumbnail label {
         text-align: center;
+        display: none;
+    }
+
+    .avatar-thumbnail.checked label {
         display: block;
     }
 
-    .avatar-selected {
-        border-color: #de4a85;  /* Color del borde cuando está seleccionado */
-        animation: vibrate 0.3s ease infinite;  /* Agrega la animación de vibración */
+    .avatar-thumbnail.checked {
+        border-color: #de4a85;
+        animation: vibrate 0.3s ease infinite;
     }
 
     @keyframes vibrate {
@@ -54,7 +58,7 @@
     }
 
     .hidden {
-        display: none;  /* Oculta las miniaturas no seleccionadas */
+        display: none;
     }
 </style>
 <script>
@@ -85,21 +89,22 @@
         <form method="post" action="">
             {% csrf_token %}
             {{ perfil_form.as_p }}
+            {{ password_form.as_p }}
 
             <div class="form-group">
                 <label for="{{ perfil_form.avatar.id_for_label }}">Selecciona tu avatar:</label>
                 <div class="avatar-container">
                     {% for value, label in perfil_form.avatar.field.choices %}
-                        <label class="avatar-thumbnail">
+                        <label class="avatar-thumbnail{% if perfil_form.avatar.value == value %} avatar-selected{% endif %}">
                             <input type="radio" name="{{ perfil_form.avatar.name }}" value="{{ value }}" {% if perfil_form.avatar.value == value %}checked{% endif %}>
                             <img src="{% static 'assets/avatars/' %}{{ value }}" alt="{{ label }}">
+                            <label>{{ label }}</label>
                         </label>
                     {% endfor %}
                 </div>
                 {{ perfil_form.avatar.errors }}
             </div>
 
-            {{ password_form.as_p }}
             <button type="submit">Guardar cambios</button>
         </form>
     </div>
