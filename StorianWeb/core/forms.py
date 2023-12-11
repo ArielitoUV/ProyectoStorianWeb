@@ -4,20 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from django import forms
 from .models import Usuario
 from .models import Resena
-
-class ResenaForm(forms.ModelForm):
-    class Meta:
-        model = Resena
-        fields = ['nombre_completo', 'email', 'fecha', 'lugar_visitado', 'calificacion_estrellas', 'comentario']
-
-    def __init__(self, *args, **kwargs):
-        super(ResenaForm, self).__init__(*args, **kwargs)
-        # Puedes personalizar el formulario aquí si es necesario
-
-    def enviar_notificacion_admin(self):
-        # Aquí puedes agregar la lógica para enviar una notificación al administrador por correo electrónico.
-        # Utiliza la información del formulario y envía un correo electrónico al administrador.
-        pass
+from .models import Contacto
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -170,3 +157,36 @@ class PerfilForm(forms.ModelForm):
 
 class CambiarContraseñaForm(PasswordChangeForm):
     pass
+
+
+class ContactoForm(forms.ModelForm):
+    nombre = forms.CharField(
+        label=_("Nombre"),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su nombre'}),
+    )
+    email = forms.EmailField(
+        label=_('Correo electrónico'),
+        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese correo electrónico'}),
+    )
+    telefono = forms.CharField(
+        label=_("Teléfono"),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su número de teléfono'}),
+    )
+    asunto = forms.CharField(
+        label=_("Asunto"),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el asunto'}),
+    )
+    mensaje = forms.CharField(
+    label=_("Mensaje"),
+    widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Ingrese su mensaje'}),
+    )
+
+
+    class Meta:
+        model = Contacto
+        fields = ['nombre', 'email', 'telefono', 'asunto', 'mensaje']
+
+    def __init__(self, *args, **kwargs):
+        super(ContactoForm, self).__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({'class': 'texto_mensaje'})

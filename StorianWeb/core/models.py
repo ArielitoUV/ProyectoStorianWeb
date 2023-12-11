@@ -67,3 +67,13 @@ class Lugar(models.Model):
 
     def __str__(self):
         return self.nombre
+    
+class Contacto(models.Model):
+    nombre = models.CharField(max_length=100)
+    email = models.EmailField()
+    telefono = models.CharField(max_length=20, blank=True, null=True)
+    asunto = models.CharField(max_length=200)
+    mensaje = models.TextField()
+
+    def __str__(self):
+        return self.nombre

@@ -10,6 +10,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from .forms import PerfilForm, CambiarContraseñaForm
+from .forms import ContactoForm
 
 
 
@@ -20,19 +21,14 @@ def registrar_usuario(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             usuario = form.save()
-            # Renderizar la plantilla con los datos del usuario
             email_body = render_to_string('core/reporte_registro.txt', {'usuario': usuario})
-            # Configurar el correo
             subject = 'Nuevo Registro de Usuario en Storian-WEb'
             from_email = settings.EMAIL_HOST_USER
             to_email = ['storianweb@gmail.com']
-            # Configurar el correo como mensaje de texto plano
             message = EmailMessage(subject, email_body, from_email, to_email)
             message.send(fail_silently=False)
-            # Redirige a la página de inicio de sesión después del registro exitoso
             return redirect('iniciar_sesion')
     else:
-        # Si no es una solicitud POST, crea un nuevo formulario (limpio)
         form = CustomUserCreationForm()
     return render(request, 'core/registro.html', {'form': form})
 
@@ -68,26 +64,16 @@ def registrar_resena(request):
         form = ResenaForm(request.POST)
         if form.is_valid():
             resena = form.save()
-            
-            # Renderizar la plantilla con los datos de la reseña
             email_body = render_to_string('core/reporte_resena.txt', {'resena': resena})
-            
-            # Configurar el correo
             subject = 'Nueva Reseña en Storian-Web'
             from_email = settings.EMAIL_HOST_USER
-            to_email = ['storianweb@gmail.com']  # Cambia a la dirección de correo del administrador
-            # Configurar el correo como mensaje de texto plano
+            to_email = ['storianweb@gmail.com']
             message = EmailMessage(subject, email_body, from_email, to_email)
             message.send(fail_silently=False)
-            
-            # Redirige a alguna página después de la creación de la reseña
             return redirect('finalresena')  # Puedes crear una página de agradecimiento
-            
-            
     else:
         # Si no es una solicitud POST, crea un nuevo formulario (limpio)
         form = ResenaForm()
-        
     return render(request, 'core/reseñas.html', {'form': form})
 
 
@@ -111,6 +97,26 @@ def gestionar_perfil(request):
             messages.error(request, 'Error al actualizar el perfil. Por favor, corrige los errores.')
 
     return render(request, 'core/micuenta.html', {'perfil_form': perfil_form, 'password_form': password_form})
+
+# En tu aplicación Django, crea o modifica el archivo views.py
+
+
+def report_contacto(request):
+    if request.method == 'POST':
+        form = ContactoForm(request.POST)
+        if form.is_valid():
+            contacto=form.save()
+            email_body = render_to_string('core/reporte_contacto.txt', {'contacto': contacto})
+            subject = 'Nuevo formulario de contacto ingresado en Storian-WEb'
+            from_email = settings.EMAIL_HOST_USER
+            to_email = ['storianweb@gmail.com']
+            message = EmailMessage(subject, email_body, from_email, to_email)
+            message.send(fail_silently=False)
+            return redirect('contacto')
+    else:
+        form = ContactoForm()
+
+    return render(request, 'contacto.html', {'form': form})
 
 
 

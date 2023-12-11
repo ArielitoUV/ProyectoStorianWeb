@@ -6,3 +6,5 @@ Fecha de Visita: {{ resena.fecha }}
 Lugar Visitado: {{ resena.lugar_visitado }}
 Calificación (estrellas): {{ resena.calificacion_estrellas }}
 Comentarios: {{ resena.comentario }}
+
+Storian Web - Notificación Automática

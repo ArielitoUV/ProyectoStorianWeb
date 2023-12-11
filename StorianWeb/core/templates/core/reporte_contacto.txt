@@ -1,0 +1,11 @@
+Nuevo formulario de contacto de Usuario
+
+Se ha registrado un nuevo formulario en Storian Web.
+
+Nombre: {{ contacto.nombre }}
+Email: {{ contacto.email }}
+Telefono: {{ contacto.telefono }}
+Asunto: {{ contacto.asunto }}
+mensaje: {{ contacto.mensaje }}
+
+Storian Web - Notificación Automática
