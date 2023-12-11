@@ -116,7 +116,7 @@ def report_contacto(request):
     else:
         form = ContactoForm()
 
-    return render(request, 'contacto.html', {'form': form})
+    return render(request, 'core/contacto.html', {'form': form})
 
 
 
