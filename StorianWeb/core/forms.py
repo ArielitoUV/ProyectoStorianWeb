@@ -17,8 +17,8 @@ class CustomUserCreationForm(UserCreationForm):
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su nombre'}),
     )
     seudonimo = forms.CharField(
-        label=_("Seudonimo"),
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su seudonimo'}),
+        label=_("Seudónimo"),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su seudónimo'}),
     )
     apellido = forms.CharField(
         label=_("Apellido"),
