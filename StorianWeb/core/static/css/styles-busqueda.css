@@ -5,8 +5,10 @@
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     margin: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-
 
 h1 {
     font-size: 24px;
@@ -16,18 +18,19 @@ h1 {
 
 .search-bar {
     display: flex;
-    justify-content: center;
     align-items: center;
     margin-bottom: 30px;
 }
 
 .input {
-    flex: 1;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 10px 10px 10px 10px;
+    height: 50px;
+    padding: 0 200px;
+    font-size: 18px;
+    color: black;
     outline: none;
+    border: 1px solid silver;
+    border-radius: 10px;
+    transition: all 0.6s ease;
 }
 
 #search-button {
@@ -69,7 +72,7 @@ h1 {
 
 body {
     min-height: 100vh;
-    background: #A770EF;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to top, #FDB99B, #CF8BF3, #A770EF);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to top, #FDB99B, #CF8BF3, #A770EF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+    background: #A770EF;
+    background: -webkit-linear-gradient(to top, #FDB99B, #CF8BF3, #A770EF);
+    background: linear-gradient(to top, #FDB99B, #CF8BF3, #A770EF);
 }
