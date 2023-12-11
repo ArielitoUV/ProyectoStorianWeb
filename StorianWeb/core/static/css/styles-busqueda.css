@@ -21,7 +21,7 @@ h1 {
     margin-bottom: 30px;
 }
 
-#search-input {
+.input {
     flex: 1;
     padding: 10px;
     font-size: 16px;

@@ -1,19 +1,53 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% block content %}
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
 
 <link rel="stylesheet" href="{% static 'css/styles-busqueda.css' %}">
 
 <div class="search-container">
     <h1>Busqueda de Lugares Historicos</h1>
     <div class="search-bar">
-        <input type="text" id="search-input" placeholder="Buscar lugares...">
+        <input type="text" id="search-input" class="input" placeholder="Buscar lugares...">
     </div>
     <button class="btn btn-custom btn-lg" onclick="buscarLugar()">Buscar</button>
     <button class="btn btn-custom btn-lg" onclick="accederAMapa()">Acceder a Mapa</button>
 </div>
 
 <script>
+    var placesData = {
+        "Parque Ecuador": { info: "Ubicada en Víctor Lamas 567, Concepción, Bío Bío. El Parque Ecuador es un área verde urbana con juegos, canchas deportivas, parque de patinetas y equipo para hacer ejercicio." },
+        "Plaza Independencia": { info: "Es la única plaza de armas en Chile que se denomina de esa manera, y su nombre se debe a que es el lugar en donde Bernardo O'Higgins realizó la declaración solemne de la independencia chilena." },
+        "Monitor Huascar": { info: "El monitor Huáscar es un buque torreta, construido por orden del gobierno peruano en el Reino Unido en 1864, que tuvo una relevante participación en la Guerra del Pacífico." },
+        "Plaza Acevedo": { info: "La Plaza Acevedo, popularmente conocida como Plaza Jurásica o Plaza de los Dinosaurios, es una área verde de la ciudad chilena de Concepción, con forma de triángulo, ubicada entre las calles San Juan Bosco, Maipú y Collao." },
+        "Cerro Caracol": { info: "El Cerro Caracol es un hito geográfico de la ciudad de Concepción, Chile. Es conocido como el pulmón verde de la ciudad, por la gran cantidad de forestación y flora que contiene. Como área recreativa se ha «fusionado» con el Parque Ecuador, el que se ubica a las faldas del cerro.​" },
+        "Universidad de Concepción": { info: "Información detallada de la Universidad de Concepción." },
+        "Parque Museo Pedro del Río Zañartu": { info: "El Parque Pedro del Río Zañartu, está ubicado en la comuna de Hualpén, Chile. Es un lugar recreativo-histórico del sector, en cuyos terrenos se emplaza el Museo Pedro del Río Zañartu, obra construida durante el período de Chile colonial, y que perteneció a la familia de Pedro del Río Zañartu." },
+        "Parque Tumbes": { info: "El Parque Tumbes de Talcahuano es un parque urbano que cobija uno de los últimos relictos de bosque esclerófilo costero representante de esta parte de la región del Biobío, y representa un proyecto socio ecológico único en Chile." },
+        "Desembocadura del río Biobío": { info: "La Playa desembocadura del rio Bío Bío es una playa de arenas negras de 700 metros de extensión aproximadamente, con el Océano Pacífico de frente. Playa no apta para bañarse, sólo usada para disfrutar de la naturaleza, siendo muy visitada por turistas amantes de a la pesca, de la fotografía, o para hacer picnic." },
+        "Parque Nacional Nonguén": { info: "El Parque Nacional Nonguén está ubicado en la provincia de Concepción, Región del Biobío, y comprende las comunas de Hualqui, Chiguayante y Concepción. Abarca una superficie de 3.036,9 hectáreas. Fue creado como reserva nacional el 30 de diciembre de 2009 y luego recategorizado como Parque Nacional Nonguén, con publicación en el Diario Oficial el 31 de agosto de 2021." },                    
+        "Catedral Metropolitana de la Santísima Concepción": { info: "La Catedral de la Santísima Concepción es la catedral de Concepción de Chile, sede de la Arquidiócesis de Concepción y uno de los principales templos de la Iglesia Católica en Chile. Se ubica en la comuna de Concepción, frente a la Plaza de la Independencia. El conjunto arquitectónico de la Catedral de la Santísima Concepción está compuesto por un Museo Eclesiástico, el Aula Magna y el templo Catedral propiamente tal." }                                        
+    // Agrega más lugares según tus necesidades
+    };
+
+    $(document).ready(function () {
+        var lugares = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.whitespace,
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            local: Object.keys(placesData)
+        });
+
+        $('#search-input').typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 1
+        }, {
+            name: 'lugares',
+            source: lugares
+        });
+    });
+
     function buscarLugar() {
         // Obtiene el valor ingresado en el campo de búsqueda
         var lugar = document.getElementById('search-input').value;
@@ -27,6 +61,6 @@
         window.location.href = "/mapa/";
     }
 </script>
-    {% endblock %}
+{% endblock %}
 </body>
 </html>
