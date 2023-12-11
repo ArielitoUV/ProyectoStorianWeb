@@ -75,7 +75,22 @@ def registrar_resena(request):
         # Si no es una solicitud POST, crea un nuevo formulario (limpio)
         form = ResenaForm()
     return render(request, 'core/reseñas.html', {'form': form})
+def report_contacto(request):
+    if request.method == 'POST':
+        form = ContactoForm(request.POST)
+        if form.is_valid():
+            contacto=form.save()
+            email_body = render_to_string('core/reporte_contacto.txt', {'contacto': contacto})
+            subject = 'Nuevo formulario de contacto ingresado en Storian-WEb'
+            from_email = settings.EMAIL_HOST_USER
+            to_email = ['storianweb@gmail.com']
+            message = EmailMessage(subject, email_body, from_email, to_email)
+            message.send(fail_silently=False)
+            return redirect('contacto')
+    else:
+        form = ContactoForm()
 
+    return render(request, 'core/contacto.html', {'form': form})
 
 
 @login_required
@@ -101,22 +116,7 @@ def gestionar_perfil(request):
 # En tu aplicación Django, crea o modifica el archivo views.py
 
 
-def report_contacto(request):
-    if request.method == 'POST':
-        form = ContactoForm(request.POST)
-        if form.is_valid():
-            contacto=form.save()
-            email_body = render_to_string('core/reporte_contacto.txt', {'contacto': contacto})
-            subject = 'Nuevo formulario de contacto ingresado en Storian-WEb'
-            from_email = settings.EMAIL_HOST_USER
-            to_email = ['storianweb@gmail.com']
-            message = EmailMessage(subject, email_body, from_email, to_email)
-            message.send(fail_silently=False)
-            return redirect('contacto')
-    else:
-        form = ContactoForm()
 
-    return render(request, 'contacto.html', {'form': form})
 
 
 
